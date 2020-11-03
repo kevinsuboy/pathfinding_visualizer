@@ -30,30 +30,41 @@
     height: 100%;
 }
 .navbar-logo {
-    min-width: 300px;
+    min-width: 200px;
 }
 .navbar-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    // flex-wrap: wrap;
+    flex-wrap: wrap;
     align-items: center;
     // min-width: 700px;
-    width: 70%;
+    // width: 70%;
     height: 100%;
 }
-.navbar-nav li {
+.nav-item {
     margin: 0 20px;
     min-width: 40px;
     cursor: pointer;
     text-align: center;
-    height: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s linear;
 }
-.navbar-nav li:hover {
+.nav-item:hover {
     color: $secondary-color;
+    transition: all 0.1s linear;
+}
+#actualStartButton:hover {
+    background-color: $secondary-color-hover;
+    transition: all 0.1s linear;
 }
 #actualStartButton {
     background-color: $secondary-color;
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.1s linear;
 }
