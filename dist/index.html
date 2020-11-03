@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>A JavaScript project</title>
+    <link rel="stylesheet" href="../src/stylesheets/reset.css">
+    <link rel="stylesheet" href="../src/stylesheets/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/5fbea3a1e3.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">    <script src="./main.js"></script>
+</head>
+
+<body>
+    <div id='global-nav'>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <a id="logo-link" class="link" href="#">Pathfinding Visualizer</a>
+                </div>
+                <ul class="navbar-nav">
+                    <li class="dropdown">Algorithms
+                        <ul class="dropdown-content">
+                            <div class="algo-item"><li>Dijkstra's Algorithm</li></div>
+                            <div class="algo-item"><li>Breadth-First Search</li></div>
+                            <div class="algo-item"><li>Depth-First Search</li></div>
+                        </ul>
+                    </li>
+                    <li class="dropdown">Mazes & Patterns</li>
+                    <li class="dropdown">Clear Board</li>
+                    <li class="dropdown">Clear Walls</li>
+                    <li class="dropdown">Clear Path</li>
+                    <li class="dropdown">Speed: Fast</li>
+                    <li id='startButtonStart'><button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize!</button></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</body>
+
+</html>

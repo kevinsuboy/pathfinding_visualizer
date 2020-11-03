@@ -1,0 +1,17 @@
+@import "./base";
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin-top: 50px;
+    // top: 50px;
+    background-color: $primary-color;
+    border-radius: 5px;
+}
+.dropdown:hover .dropdown-content{
+    display: block;
+}

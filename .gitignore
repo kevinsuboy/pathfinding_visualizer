@@ -1,2 +1,4 @@
 node_modules/
 *bundle.js*
+src/stylesheets/main.css
+.sass-cache/

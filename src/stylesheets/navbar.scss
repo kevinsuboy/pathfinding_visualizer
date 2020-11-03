@@ -1,0 +1,59 @@
+@import "./base";
+
+#global-nav {
+    // border: 1px solid red;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    background-color: $primary-color;
+    box-shadow: $my-box-shadow;
+    min-height: 60px;
+}
+.navbar {
+    margin: 0 auto;
+    width: 90%;
+}
+.link {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+#logo-link {
+    font-size: 20px;
+}
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
+.navbar-logo {
+    min-width: 300px;
+}
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // flex-wrap: wrap;
+    align-items: center;
+    // min-width: 700px;
+    width: 70%;
+    height: 100%;
+}
+.navbar-nav li {
+    margin: 0 20px;
+    min-width: 40px;
+    cursor: pointer;
+    text-align: center;
+    height: 100%;
+}
+.navbar-nav li:hover {
+    color: $secondary-color;
+}
+#actualStartButton {
+    background-color: $secondary-color;
+    padding: 10px;
+    border-radius: 5px;
+}
