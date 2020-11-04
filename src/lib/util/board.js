@@ -34,8 +34,8 @@ class Board {
         this.watchClearWall();
     }
     toggleWall(e) {
-        if(e.type === "mousedown") e.currentTarget.classList.add("mousedown");
         const notSt = !(e.target.classList.contains("start") || e.target.classList.contains("stop"));
+        if(e.type === "mousedown" && notSt) e.currentTarget.classList.add("mousedown");
         if(e.target.tagName === "TD" && e.currentTarget.classList.contains("mousedown")) {
             if(e.target.classList.contains("wall")){
                 e.target.classList.remove("wall");
