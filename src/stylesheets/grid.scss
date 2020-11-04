@@ -6,11 +6,12 @@
 #board td{
     height: 25px;
     width: 25px;
+    position: relative;
 }
 .start, .stop {
     border: 1px solid $tertiary-color;
-    display: flex; justify-content: center; align-items: center;
-    cursor: pointer;
+    // display: flex; justify-content: center; align-items: center;
+    // cursor: pointer;
 }
 .unvisited {
     border: 1px solid $tertiary-color;
@@ -44,6 +45,7 @@
     padding: 0;
     font-size: 25px;
     border: none;
+    position: absolute;
 
     animation-name: startstopAnimation;
     animation-duration: 0.7s;
@@ -56,4 +58,10 @@
 }
 .start i{
     font-size: 35px;
+    top: -5px;
+    left: 3.5px;
+}
+.stop i{
+    top: 0px;
+    left: -0.5px;
 }
