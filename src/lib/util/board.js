@@ -5,7 +5,7 @@ class Board {
         this.size = size;
         this.browserWidth = 2000;
         this.mainGrid = this.genBoard(size[0],size[1]);
-        this.dropStartStop(this.mainGrid);
+        this.initStartStop(this.mainGrid);
         this.allEventListeners();
     }
     genBoard(h, w) {
@@ -70,12 +70,12 @@ class Board {
         grid.addEventListener("mouseover",(e) => this.toggleWall(e))
         grid.addEventListener("mouseup", (e) => { e.currentTarget.classList.remove("mouse_wall")})
     }
-    dropStartStop(){
+    initStartStop(){
         const [h, w] = this.size;
-        let starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+        let starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (starttd.classList.length === 0) return;
         while(!starttd.classList.contains("unvisited")) 
             starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
-        let stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+        let stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (stoptd.classList.length === 0) return;
         while(!starttd.classList.contains("unvisited")) 
             stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
         //

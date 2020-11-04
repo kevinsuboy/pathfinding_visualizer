@@ -4,7 +4,7 @@
     // border: 1px solid red;
     display: flex;
     align-items: center;
-    color: white;
+    color: $font-color;
     font-weight: 700;
     background-color: $primary-color;
     box-shadow: $my-box-shadow;
@@ -75,5 +75,6 @@
     border-radius: 5px;
 }
 .clicked:hover {
-    color: white;
+    color: $font-color;
+    background-color: $secondary-color-hover;
 }

@@ -1,19 +1,22 @@
+
+@import "./base";
+
 @keyframes visitedAnimation {
     0% {
         transform: scale(.3);
-        background-color: rgba(0, 0, 66, 0.75);
+        background-color: $visited-color-1;
         border-radius: 100%;
     }
     50% {
-        background-color: rgba(36, 89, 120, 0.75);
+        background-color: $visited-color-2;
     }
     75% {
         transform: scale(1.2);
-        background-color: rgba(11, 181, 119, 0.75)
+        background-color: $visited-color-3;
     }
     100% {
         transform: scale(1.0);
-        background-color: rgba(52, 207, 235, 0.75);
+        background-color: $visited-color-4;
     }
 }
 
@@ -33,7 +36,7 @@
 }
 @keyframes startstopAnimation {
     0% {
-        transform: scale(.3);
+        transform: scale(.5);
         // background-color: rgb(12, 53, 71);
     }
     50% {

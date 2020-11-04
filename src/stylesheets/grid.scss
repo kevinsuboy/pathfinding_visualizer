@@ -46,11 +46,14 @@
     border: none;
 
     animation-name: startstopAnimation;
-    animation-duration: 1.5s;
+    animation-duration: 0.7s;
     animation-timing-function: ease-out;
     // animation-delay: 0;
     // animation-direction: normal;
     // animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-play-state: running;
+}
+.start i{
+    font-size: 35px;
 }

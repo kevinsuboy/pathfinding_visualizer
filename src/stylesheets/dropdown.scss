@@ -12,13 +12,15 @@
     top: 25px;
     left: 0px;
     width: 250px;
-    color: white;
+    color: $font-color;
+    z-index: 1;
 }
 .dropdown-content li:hover {
     background-color: $secondary-color;
     transition: all 0.1s linear;
 }
 .dropdown-content li {
+    font-size: 12px;
     height: 100%;
     padding: 0 10px;
     display: flex;
@@ -28,7 +30,7 @@
     transition: all 0.1s linear;
 }
 .dropdown-body {
-    background-color: $primary-color;
+    background-color: $visited-color-2;
     box-shadow: $my-box-shadow;
     border-radius: 5px;
     padding: 5px;
