@@ -5,8 +5,8 @@ const {gridAnimations} = require("./lib/animations/gridAnimations")
 
 document.addEventListener("DOMContentLoaded", () => {
     NavBar.watchAll();
-    const board = new Board([5,5]);
-    // const board = new Board([25,50]);
+    // const board = new Board([5,5]);
+    const board = new Board([25,50]);
     const bfs = new BFS(board.size);
     const nodesToAnimate = [];
     bfs.execute(nodesToAnimate);

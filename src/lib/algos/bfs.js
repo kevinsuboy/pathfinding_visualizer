@@ -34,7 +34,7 @@ class BFS {
             debugger
             if (instant) instantvisited.push(cur);
             else nodesToAnimate.push({ cur, type: "visited" })
-            if (this.getSquare(cur) === 3){
+            if (this.getSquare(cur) === 5){
                 return true; // if done, exit
             }
             this.grid[cur[0]][cur[1]] = 1;
@@ -43,7 +43,7 @@ class BFS {
                 // debugger
                 if(this.validMove(newPos)){
                     // if (!instant) nodesToAnimate.push({ newPos, type: "queued" })
-                    // this.grid[newPos[0]][newPos[1]] = 2;
+                    this.grid[newPos[0]][newPos[1]] += 2;
                     queue.push(newPos);
                 }
             }
