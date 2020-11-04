@@ -1,9 +1,9 @@
 const NavBar = require("./lib/util/navbar");
-const BoardUtil = require("./lib/util/board_util")
+const {Board} = require("./lib/util/board")
 
 document.addEventListener("DOMContentLoaded", () => {
-    // debugger
+    debugger
     NavBar.watchAll();
-    BoardUtil.execAll([25,50]);
+    const board = new Board([25,50]);
     // BoardUtil.execAll([2,5]);
 })

@@ -1,5 +1,8 @@
 @import "./base";
 @import "./animations";
+#board{
+    border: 1px solid $tertiary-color;
+}
 #board td{
     height: 25px;
     width: 25px;

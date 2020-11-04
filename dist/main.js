@@ -9,15 +9,16 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/lib/util/board_util.js":
-/*!************************************!*\
-  !*** ./src/lib/util/board_util.js ***!
-  \************************************/
+/***/ "./src/lib/util/board.js":
+/*!*******************************!*\
+  !*** ./src/lib/util/board.js ***!
+  \*******************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
+/*! CommonJS bailout: module.exports is used directly at 67:0-14 */
 /***/ ((module) => {
 
-eval("\nconst genBoard = (h, w) => {\n    const mainGrid = document.getElementById(\"mainGrid\");\n    mainGrid.innerHTML = '';\n    const table = document.createElement(\"table\");\n    table.id = \"board\";\n    const tbody = document.createElement(\"tbody\");\n    table.appendChild(tbody);\n    for(let i=0;i<h;i++){\n        let trow = document.createElement(\"tr\");\n        trow.id = `row_${i}`;\n        for(let j=0;j<w;j++){\n            let td = document.createElement(\"td\");\n            td.id = `${i}-${j}`;\n            td.classList.add(\"unvisited\")\n            trow.appendChild(td);\n        }\n        tbody.appendChild(trow);\n    }\n    mainGrid.appendChild(table);\n    return mainGrid;\n}\nconst toggleWall = (e) => {\n    console.log(e.type)\n    if(e.type === \"mousedown\") e.currentTarget.classList.add(\"mousedown\");\n    if(e.target.tagName === \"TD\" && e.currentTarget.classList.contains(\"mousedown\")) {\n        if(e.target.classList.contains(\"wall\")){\n            e.target.classList.remove(\"wall\");\n            e.target.classList.add(\"unvisited\");\n        } else {\n            e.target.classList.add(\"wall\");\n            e.target.classList.remove(\"unvisited\");\n            e.target.classList.remove(\"visited\");\n        }\n    }\n}\nconst watchWall = (grid) => {\n    // for(let el of grid){\n        debugger\n        grid.addEventListener(\"mousedown\",(e) => toggleWall(e))\n        grid.addEventListener(\"mouseover\",(e) => toggleWall(e))\n        grid.addEventListener(\"mouseup\", (e) => { isClicked = false; e.currentTarget.classList.remove(\"mousedown\")})\n    // }\n}\nconst execAll = (size) => {\n    watchWall(genBoard(size[0], size[1]));\n}\nmodule.exports = {\n    execAll\n}\n\n//# sourceURL=webpack://pathfinding_visualizer/./src/lib/util/board_util.js?");
+eval("class Board {\n    constructor(size){\n        this.mainGrid = this.genBoard(size[0],size[1])\n        this.allEventListeners();\n    }\n    genBoard(h, w) {\n        const mainGrid = document.getElementById(\"mainGrid\");\n        mainGrid.innerHTML = '';\n        const table = document.createElement(\"table\");\n        table.id = \"board\";\n        const tbody = document.createElement(\"tbody\");\n        table.appendChild(tbody);\n        for(let i=0;i<h;i++){\n            let trow = document.createElement(\"tr\");\n            trow.id = `row_${i}`;\n            for(let j=0;j<w;j++){\n                let td = document.createElement(\"td\");\n                td.id = `${i}-${j}`;\n                td.classList.add(\"unvisited\")\n                trow.appendChild(td);\n            }\n            tbody.appendChild(trow);\n        }\n        mainGrid.appendChild(table);\n        return mainGrid;\n    }\n    toggleWall(e) {\n        // console.log(e.type)\n        if(e.type === \"mousedown\") e.currentTarget.classList.add(\"mousedown\");\n        if(e.target.tagName === \"TD\" && e.currentTarget.classList.contains(\"mousedown\")) {\n            if(e.target.classList.contains(\"wall\")){\n                e.target.classList.remove(\"wall\");\n                e.target.classList.add(\"unvisited\");\n            } else {\n                e.target.classList.add(\"wall\");\n                e.target.classList.remove(\"unvisited\");\n                e.target.classList.remove(\"visited\");\n            }\n        }\n    }\n    watchClearWall() {\n        const button = document.getElementById(\"clearWalls\");\n        button.addEventListener(\"click\",(e) => this.clearWalls(e))\n    }\n    clearWalls(e) {\n        const walls = document.getElementsByClassName(\"wall\");\n        while(walls.length > 0){\n            walls[0].classList.add(\"unvisited\");\n            walls[0].classList.remove(\"wall\");\n        }\n    }\n    watchWall(grid) {\n        // for(let el of grid){\n            debugger\n            grid.addEventListener(\"mousedown\",(e) => this.toggleWall(e))\n            grid.addEventListener(\"mouseover\",(e) => this.toggleWall(e))\n            grid.addEventListener(\"mouseup\", (e) => { e.currentTarget.classList.remove(\"mousedown\")})\n        // }\n    }\n    allEventListeners() {\n        this.watchWall(this.mainGrid);\n        this.watchClearWall();\n    }\n}\n\n\nmodule.exports = {\n    Board\n}\n\n//# sourceURL=webpack://pathfinding_visualizer/./src/lib/util/board.js?");
 
 /***/ }),
 
@@ -65,7 +66,7 @@ eval("const toggleDropdown = (e) => {\n    const isClicked  = e.currentTarget.cl
   \**********************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_require__ */
-eval("const NavBar = __webpack_require__(/*! ./lib/util/navbar */ \"./src/lib/util/navbar.js\");\nconst BoardUtil = __webpack_require__(/*! ./lib/util/board_util */ \"./src/lib/util/board_util.js\")\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    // debugger\n    NavBar.watchAll();\n    BoardUtil.execAll([25,50]);\n    // BoardUtil.execAll([2,5]);\n})\n\n//# sourceURL=webpack://pathfinding_visualizer/./src/index.js?");
+eval("const NavBar = __webpack_require__(/*! ./lib/util/navbar */ \"./src/lib/util/navbar.js\");\nconst {Board} = __webpack_require__(/*! ./lib/util/board */ \"./src/lib/util/board.js\")\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    debugger\n    NavBar.watchAll();\n    const board = new Board([25,50]);\n    // BoardUtil.execAll([2,5]);\n})\n\n//# sourceURL=webpack://pathfinding_visualizer/./src/index.js?");
 })();
 
 /******/ })()
