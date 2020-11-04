@@ -5,7 +5,7 @@ class Board {
         this.size = size;
         this.browserWidth = 2000;
         this.mainGrid = this.genBoard(size[0],size[1]);
-        this.initStartStop(this.mainGrid);
+        this.initStartStop();
         this.allEventListeners();
     }
     genBoard(h, w) {
@@ -94,7 +94,7 @@ class Board {
         const start = document.getElementsByClassName("start")[0];
         const stop = document.getElementsByClassName("stop")[0];
         const isSt = this.isStartStop(e, start, stop);
-        debugger
+        // debugger
         if (e.type === "mousedown" && isSt){
             if (start.contains(e.target)) e.currentTarget.classList.add("mouse_start");
             if (stop.contains(e.target)) e.currentTarget.classList.add("mouse_stop");
@@ -109,7 +109,8 @@ class Board {
         }
     }
     addStartStop(start, str = "start"){
-        start.className = ''; start.classList.add(str);
+        // start.className = '';
+        start.classList.add(str);
         start.innerHTML = str === "start" ? '<i class="fas fa-angle-right"></i>' : '<i class="far fa-dot-circle"></i>'
     }
     removeStartStop(start, str = "start"){
