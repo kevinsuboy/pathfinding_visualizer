@@ -99,11 +99,11 @@ class Board {
             if (start.contains(e.target)) e.currentTarget.classList.add("mouse_start");
             if (stop.contains(e.target)) e.currentTarget.classList.add("mouse_stop");
         }
-        if (e.currentTarget.classList.contains("mouse_start")) {
+        if (e.target.tagName === "TD" && e.currentTarget.classList.contains("mouse_start")) {
             this.removeStartStop(start);
             this.addStartStop(e.target)
         }
-        if (e.currentTarget.classList.contains("mouse_stop")) {
+        if (e.target.tagName === "TD" && e.currentTarget.classList.contains("mouse_stop")) {
             this.removeStartStop(stop,"stop");
             this.addStartStop(e.target,"stop")
         }
