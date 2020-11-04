@@ -10,6 +10,7 @@
 .start, .stop {
     border: 1px solid $tertiary-color;
     display: flex; justify-content: center; align-items: center;
+    cursor: pointer;
 }
 .unvisited {
     border: 1px solid $tertiary-color;
@@ -42,6 +43,7 @@
     margin: 0;
     padding: 0;
     font-size: 25px;
+    border: none;
 
     animation-name: startstopAnimation;
     animation-duration: 1.5s;

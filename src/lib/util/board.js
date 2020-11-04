@@ -32,15 +32,18 @@ class Board {
     allEventListeners() {
         this.watchWall(this.mainGrid);
         this.watchClearWall();
+        this.watchStartStop(this.mainGrid);
+    }
+    isStartStop(e, start, stop) {
+        // debugger
+        return (start ? start.contains(e.target):false) || (stop ? stop.contains(e.target):false);
     }
     toggleWall(e) {
-        const startTd = document.getElementsByClassName("start")[0];
-        const stopTd = document.getElementsByClassName("stop")[0];
-        // debugger
-        const notSt = !(startTd.contains(e.target) || stopTd.contains(e.target));
-        debugger
-        if(e.type === "mousedown" && notSt) e.currentTarget.classList.add("mousedown");
-        if(e.target.tagName === "TD" && e.currentTarget.classList.contains("mousedown")) {
+        const start = document.getElementsByClassName("start")[0];
+        const stop = document.getElementsByClassName("stop")[0];
+        const notSt = !this.isStartStop(e, start, stop);
+        if(e.type === "mousedown" && notSt) e.currentTarget.classList.add("mouse_wall");
+        if(e.target.tagName === "TD" && e.currentTarget.classList.contains("mouse_wall")) {
             if(e.target.classList.contains("wall")){
                 e.target.classList.remove("wall");
                 e.target.classList.add("unvisited");
@@ -65,7 +68,7 @@ class Board {
     watchWall(grid) {
         grid.addEventListener("mousedown",(e) => this.toggleWall(e))
         grid.addEventListener("mouseover",(e) => this.toggleWall(e))
-        grid.addEventListener("mouseup", (e) => { e.currentTarget.classList.remove("mousedown")})
+        grid.addEventListener("mouseup", (e) => { e.currentTarget.classList.remove("mouse_wall")})
     }
     dropStartStop(){
         const [h, w] = this.size;
@@ -76,10 +79,45 @@ class Board {
         while(!starttd.classList.contains("unvisited")) 
             stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
         //
-        starttd.className = ''; starttd.classList.add("start");
-        starttd.innerHTML = '<i class="fas fa-angle-right"></i>'
-        stoptd.className = ''; stoptd.classList.add("stop");
-        stoptd.innerHTML = '<i class="far fa-dot-circle"></i>';
+        this.addStartStop(starttd);
+        this.addStartStop(stoptd,"stop");
+    }
+    watchStartStop(grid){
+        grid.addEventListener("mousedown", (e) => this.moveStartStop(e))
+        grid.addEventListener("mouseover", (e) => this.moveStartStop(e))
+        grid.addEventListener("mouseup", (e) => {
+            e.currentTarget.classList.remove("mouse_start");
+            e.currentTarget.classList.remove("mouse_stop");
+        })
+    }
+    moveStartStop(e) {
+        const start = document.getElementsByClassName("start")[0];
+        const stop = document.getElementsByClassName("stop")[0];
+        const isSt = this.isStartStop(e, start, stop);
+        debugger
+        if (e.type === "mousedown" && isSt){
+            if (start.contains(e.target)) e.currentTarget.classList.add("mouse_start");
+            if (stop.contains(e.target)) e.currentTarget.classList.add("mouse_stop");
+        }
+        if (e.currentTarget.classList.contains("mouse_start")) {
+            this.removeStartStop(start);
+            this.addStartStop(e.target)
+        }
+        if (e.currentTarget.classList.contains("mouse_stop")) {
+            this.removeStartStop(stop,"stop");
+            this.addStartStop(e.target,"stop")
+        }
+    }
+    addStartStop(start, str = "start"){
+        start.className = ''; start.classList.add(str);
+        start.innerHTML = str === "start" ? '<i class="fas fa-angle-right"></i>' : '<i class="far fa-dot-circle"></i>'
+    }
+    removeStartStop(start, str = "start"){
+        // debugger
+        if(start){
+            start.innerHTML = '';
+            start.classList.add("unvisited"); start.classList.remove(str);
+        }
     }
 }
 
