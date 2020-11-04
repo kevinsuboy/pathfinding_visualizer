@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const bfs = new BFS(board.size);
     const nodesToAnimate = [];
     bfs.execute(nodesToAnimate);
-    // debugger
+    debugger
     const gridA = new gridAnimations("fast", nodesToAnimate);
-    gridA.animateNodes();
-    setTimeout(() => gridA.animateNodes(),1000);
+    gridA.animateNodes("queued");
+    setTimeout(() => gridA.animateNodes("current"),3*gridA.speed);
+    setTimeout(() => gridA.animateNodes("visited"),4*gridA.speed);
 })

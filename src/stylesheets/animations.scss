@@ -19,6 +19,24 @@
         background-color: $visited-color-4;
     }
 }
+@keyframes queuedAnimation {
+    0% {
+        transform: scale(.3);
+        background-color: $queued-color-1;
+        border-radius: 100%;
+    }
+    50% {
+        background-color: $queued-color-2;
+    }
+    75% {
+        transform: scale(1.2);
+        background-color: $queued-color-3;
+    }
+    100% {
+        transform: scale(1.0);
+        background-color: $queued-color-4;
+    }
+}
 
 @keyframes wallAnimation {
     0% {

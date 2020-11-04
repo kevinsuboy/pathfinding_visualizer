@@ -28,6 +28,24 @@
     animation-fill-mode: forwards;
     animation-play-state: running;
 }
+// .queued {
+//     border: 1px solid $tertiary-color;
+
+//     animation-name: queuedAnimation;
+//     animation-duration: 1.5s;
+//     animation-timing-function: ease-out;
+//     // animation-delay: 0;
+//     // animation-direction: normal;
+//     // animation-iteration-count: 1;
+//     animation-fill-mode: forwards;
+//     animation-play-state: running;
+// }
+.queued {
+    background-color: rgba(164, 77, 182, 0.699);
+}
+.current {
+    background-color: rgba(255, 251, 0, 0.699);
+}
 .wall {
     animation-name: wallAnimation;
     animation-duration: 0.3s;

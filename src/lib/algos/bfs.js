@@ -17,23 +17,22 @@ class BFS {
         // debugger
         this.dir = [
             [ 0, 1],
-            [ 0,-1],
             [ 1, 0],
-            [-1, 0]
+            [-1, 0],
+            [ 0,-1]
         ];
     }
     execute(nodesToAnimate, instant){
         const instantvisited = [];
         let cur = document.getElementsByClassName(`start`)[0].id.split("-").map(el=>parseInt(el));
         let newPos = undefined;
-        // if(!instant) nodesToAnimate.push({cur, type: "queued"})
         const queue = [cur];
         
         while(queue.length > 0){
             cur = queue.shift();
-            debugger
+            // debugger
             if (instant) instantvisited.push(cur);
-            else nodesToAnimate.push({ cur, type: "visited" })
+            else nodesToAnimate.push(cur)
             if (this.getSquare(cur) === 5){
                 return true; // if done, exit
             }
@@ -42,7 +41,6 @@ class BFS {
                 newPos = this.move(cur, d);
                 // debugger
                 if(this.validMove(newPos)){
-                    // if (!instant) nodesToAnimate.push({ newPos, type: "queued" })
                     this.grid[newPos[0]][newPos[1]] += 2;
                     queue.push(newPos);
                 }
