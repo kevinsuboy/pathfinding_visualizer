@@ -34,7 +34,11 @@ class Board {
         this.watchClearWall();
     }
     toggleWall(e) {
-        const notSt = !(e.target.classList.contains("start") || e.target.classList.contains("stop"));
+        const startTd = document.getElementsByClassName("start")[0];
+        const stopTd = document.getElementsByClassName("stop")[0];
+        // debugger
+        const notSt = !(startTd.contains(e.target) || stopTd.contains(e.target));
+        debugger
         if(e.type === "mousedown" && notSt) e.currentTarget.classList.add("mousedown");
         if(e.target.tagName === "TD" && e.currentTarget.classList.contains("mousedown")) {
             if(e.target.classList.contains("wall")){
