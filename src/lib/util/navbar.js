@@ -18,7 +18,7 @@ const watchDropdown = () => {
     const dropdown = document.getElementsByClassName("dropdown");
     for(let d of dropdown)
         d.addEventListener("click", (e) => toggleDropdown(e))
-    document.addEventListener("click", (e) => {
+        document.addEventListener("click", (e) => {
         if (!document.getElementById("global-nav").contains(e.target)){
             clearDropdown();
             // debugger

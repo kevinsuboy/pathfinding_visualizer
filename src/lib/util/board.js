@@ -1,6 +1,11 @@
+const {generateInt} = require("./mathUtil");
+
 class Board {
     constructor(size){
-        this.mainGrid = this.genBoard(size[0],size[1])
+        this.size = size;
+        this.browserWidth = 2000;
+        this.mainGrid = this.genBoard(size[0],size[1]);
+        this.dropStartStop(this.mainGrid);
         this.allEventListeners();
     }
     genBoard(h, w) {
@@ -24,14 +29,18 @@ class Board {
         mainGrid.appendChild(table);
         return mainGrid;
     }
+    allEventListeners() {
+        this.watchWall(this.mainGrid);
+        this.watchClearWall();
+    }
     toggleWall(e) {
-        // console.log(e.type)
         if(e.type === "mousedown") e.currentTarget.classList.add("mousedown");
+        const notSt = !(e.target.classList.contains("start") || e.target.classList.contains("stop"));
         if(e.target.tagName === "TD" && e.currentTarget.classList.contains("mousedown")) {
             if(e.target.classList.contains("wall")){
                 e.target.classList.remove("wall");
                 e.target.classList.add("unvisited");
-            } else {
+            } else if(notSt){
                 e.target.classList.add("wall");
                 e.target.classList.remove("unvisited");
                 e.target.classList.remove("visited");
@@ -50,16 +59,23 @@ class Board {
         }
     }
     watchWall(grid) {
-        // for(let el of grid){
-            debugger
-            grid.addEventListener("mousedown",(e) => this.toggleWall(e))
-            grid.addEventListener("mouseover",(e) => this.toggleWall(e))
-            grid.addEventListener("mouseup", (e) => { e.currentTarget.classList.remove("mousedown")})
-        // }
+        grid.addEventListener("mousedown",(e) => this.toggleWall(e))
+        grid.addEventListener("mouseover",(e) => this.toggleWall(e))
+        grid.addEventListener("mouseup", (e) => { e.currentTarget.classList.remove("mousedown")})
     }
-    allEventListeners() {
-        this.watchWall(this.mainGrid);
-        this.watchClearWall();
+    dropStartStop(){
+        const [h, w] = this.size;
+        let starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+        while(!starttd.classList.contains("unvisited")) 
+            starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+        let stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+        while(!starttd.classList.contains("unvisited")) 
+            stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+        //
+        starttd.className = ''; starttd.classList.add("start");
+        starttd.innerHTML = '<i class="fas fa-angle-right"></i>'
+        stoptd.className = ''; stoptd.classList.add("stop");
+        stoptd.innerHTML = '<i class="far fa-dot-circle"></i>';
     }
 }
 

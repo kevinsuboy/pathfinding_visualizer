@@ -7,6 +7,10 @@
     height: 25px;
     width: 25px;
 }
+.start, .stop {
+    border: 1px solid $tertiary-color;
+    display: flex; justify-content: center; align-items: center;
+}
 .unvisited {
     border: 1px solid $tertiary-color;
 }
@@ -33,4 +37,9 @@
     animation-play-state: running;
 
     border: 1px solid rgb(12, 53, 71);
+}
+.stop i, .start i {
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
 }
