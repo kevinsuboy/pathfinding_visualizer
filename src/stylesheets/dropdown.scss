@@ -7,8 +7,8 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    padding-top: 35px;
-    top: 35px;
+    padding-top: 25px;
+    top: 25px;
     left: 0px;
     width: 250px;
     color: white;
@@ -16,7 +16,6 @@
 .dropdown-content li:hover {
     background-color: $secondary-color;
     transition: all 0.1s linear;
-    
 }
 .dropdown-content li {
     height: 100%;
@@ -46,4 +45,22 @@
     height: 30px;
     font-weight: 300;
     font-size: 15px;
+}
+
+
+.dropdown-content{
+    animation: rotateMenu 400ms ease-in-out forwards;
+    transform-origin: top center;
+    
+@keyframes rotateMenu {
+    0% {
+        transform: rotateX(-90deg)
+    }
+    70% {
+        transform: rotateX(20deg) 
+    }
+    100% {
+        transform: rotateX(0deg) 
+    }
+}
 }

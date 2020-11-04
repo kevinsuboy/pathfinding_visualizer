@@ -8,7 +8,7 @@
     font-weight: 700;
     background-color: $primary-color;
     box-shadow: $my-box-shadow;
-    min-height: 60px;
+    min-height: 50px;
 }
 .navbar {
     margin: 0 auto;
@@ -28,6 +28,7 @@
     align-items: center;
     flex-wrap: wrap;
     height: 100%;
+    font-size: 14px;
 }
 .navbar-logo {
     min-width: 200px;
@@ -47,7 +48,7 @@
     min-width: 40px;
     cursor: pointer;
     text-align: center;
-    height: 50px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
