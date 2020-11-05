@@ -26,6 +26,22 @@ const watchDropdown = () => {
     })
 }
 
+const watchMaze = () => {
+    const maze = document.getElementById("maze");
+    const none = document.getElementById("no-maze");
+    const rD = document.getElementById("recursive-division");
+    const rM = document.getElementById("random-maze");
+    maze.addEventListener("click", e => {
+        // debugger
+        const noneT = none.contains(e.target);
+        const rDT = rD.contains(e.target);
+        const rMT = rM.contains(e.target);
+        if (noneT || rDT || rMT) { none.classList.remove("selected"); rD.classList.remove("selected"); rM.classList.remove("selected"); }
+        if (noneT) none.classList.add("selected");
+        if (rDT) rD.classList.add("selected");
+        if (rMT) rM.classList.add("selected");
+    })
+}
 const watchAlgo = () => {
     const algo = document.getElementById("algo");
     const bfs = document.getElementById("bfs");
@@ -65,6 +81,7 @@ const watchAll = () => {
     watchDropdown();
     watchSpeed();
     watchAlgo();
+    watchMaze();
 }
 
 module.exports = {

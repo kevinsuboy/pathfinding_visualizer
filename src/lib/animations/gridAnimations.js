@@ -4,12 +4,35 @@ class gridAnimations {
         this.speed = speed === "fast" ? 0 :
                     speed === "average" ? 20 : 50;
     }
+    animateInstant(type){
+        let cur;
+        for(let idx = 0; idx<this.nodesToAnimate.length; idx++){
+            let cur = this.nodesToAnimate[idx];
+            if (!cur) debugger
+            cur = document.getElementById(`${cur[0]}-${cur[1]}`);
+            switch(type){
+                case "instantvisited":
+                    cur.classList.add("instantvisited");
+                    break;
+                case "instantpath":
+                    cur.classList.add("instantpath");
+                    break;
+                case "walls":
+                    cur.classList.add("wall");
+                    break;
+                default: break;
+            }
+        }
+
+    }
     animateNodes(type, pathAnimate = () => {}){
         // for(let i=0;i<this.nodesToAnimate.length;i++)
         //     this.animateNode(i);
         //     // setTimeout(()=>this.animateNode(i), i*this.speed);
         // debugger
-        setTimeout(() => this.animateNode(0, type, pathAnimate), this.speed);
+        window.timeouts.push(
+        setTimeout(() => this.animateNode(0, type, pathAnimate), this.speed)
+        )
     }
     animateNode(idx,type, pathAnimate){
         if(!(pathAnimate instanceof Function)) debugger;
@@ -34,10 +57,15 @@ class gridAnimations {
                 cur.classList.remove("visited");
                 cur.classList.add("path");
                 break;
+            case "walls":
+                cur.classList.add("wall");
+                break;
             default:
                 break;
         }
-        setTimeout(()=>this.animateNode(idx+1,type, pathAnimate),this.speed);
+        window.timeouts.push(
+        setTimeout(()=>this.animateNode(idx+1,type, pathAnimate),this.speed)
+        )
     }
 }
 

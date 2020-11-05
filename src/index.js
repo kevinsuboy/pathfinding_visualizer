@@ -1,13 +1,14 @@
 const NavBar = require("./lib/util/navbar");
-const {Board} = require("./lib/util/board")
+const {Game} = require("./lib/util/game")
 const {BFS} = require("./lib/algos/bfs")
 const {gridAnimations} = require("./lib/animations/gridAnimations")
 
 document.addEventListener("DOMContentLoaded", () => {
     NavBar.watchAll();
+    window.timeouts = [];
     const size = [25, 50];
-    // const size = [2, 1];
+    // const size = [5, 5];
     const algos = {};
     algos["bfs"] = BFS;
-    const board = new Board(size,algos, gridAnimations);
+    const board = new Game(size,algos, gridAnimations);
 })

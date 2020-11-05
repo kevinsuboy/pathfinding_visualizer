@@ -3,17 +3,11 @@ class BFS {
         this.grid = new Array(gridSize[0]);
         for (let i = 0; i < this.grid.length; i++) {
             this.grid[i] = new Array(gridSize[1]);
-            for(let j=0; j<gridSize[1];j++)
+            for (let j = 0; j < gridSize[1]; j++)
                 this.grid[i][j] = 0;
         }
-        const stop = document.getElementsByClassName("stop")[0].id.split("-").map(el => parseInt(el));
-        this.grid[stop[0]][stop[1]] = "s";
-        const walls = document.getElementsByClassName("wall");
-        // debugger
-        for(let w of walls){
-            let [x,y] = w.id.split("-").map(el => parseInt(el));
-            this.grid[x][y] = -1;
-        }
+        this.nodesToAnimate = [];
+        this.backtraceToAnimate = [];
         // debugger
         this.dir = [
             [ 0, 1],
@@ -22,8 +16,29 @@ class BFS {
             [ 0,-1]
         ];
     }
-    execute(nodesToAnimate, instant){
-        const instantvisited = [];
+    genGrid(){
+        this.resetGrid();
+        //! Drop Stop
+        const stop = document.getElementsByClassName("stop")[0].id.split("-").map(el => parseInt(el));
+        this.grid[stop[0]][stop[1]] = "s";
+        // Drop Walls
+        const walls = document.getElementsByClassName("wall");
+        for (let w of walls) {
+            let [x, y] = w.id.split("-").map(el => parseInt(el));
+            this.grid[x][y] = -1;
+        }
+    }
+    resetGrid(){
+        for (let i = 0; i < this.grid.length; i++) {
+            for (let j = 0; j < this.grid[0].length; j++)
+                this.grid[i][j] = 0;
+        }
+    }
+    execute(nodesToAnimate, backtraceToAnimate){
+        this.genSearch(nodesToAnimate); this.getShortestPath(backtraceToAnimate);
+    }
+    genSearch(nodesToAnimate){
+        this.genGrid();
         let cur = document.getElementsByClassName(`start`)[0].id.split("-").map(el=>parseInt(el));
         let newPos = undefined;
         const queue = [cur]; this.grid[cur[0]][cur[1]] = 1;
@@ -31,8 +46,7 @@ class BFS {
         while(queue.length > 0){
             cur = queue.shift();
             // debugger
-            if (instant) instantvisited.push(cur);
-            else nodesToAnimate.push(cur)
+            nodesToAnimate.push(cur)
             if (this.getSquare(cur) === "s"){
                 // debugger
                 this.grid[cur[0]][cur[1]] = this.maxCnt;
