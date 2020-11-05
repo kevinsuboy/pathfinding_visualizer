@@ -179,7 +179,7 @@ class Board {
         this.addStartStop(starttd);
         //
         let stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (stoptd.classList.length === 0) return;
-        while(!starttd.classList.contains("unvisited")) 
+        while ((!stoptd.classList.contains("unvisited")) || stoptd.classList.contains("start"))
             stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
         //
         this.addStartStop(stoptd,"stop");
@@ -201,11 +201,12 @@ class Board {
             if (start.contains(e.target)) e.currentTarget.classList.add("mouse_start");
             if (stop.contains(e.target)) e.currentTarget.classList.add("mouse_stop");
         }
-        if (e.target.tagName === "TD" && e.currentTarget.classList.contains("mouse_start")) {
+        if (!(e.target.tagName === "TD" && !e.target.classList.contains("wall"))) return;
+        if (e.currentTarget.classList.contains("mouse_start")) {
             this.removeStartStop(start);
             this.addStartStop(e.target)
         }
-        if (e.target.tagName === "TD" && e.currentTarget.classList.contains("mouse_stop")) {
+        if (e.currentTarget.classList.contains("mouse_stop")) {
             this.removeStartStop(stop,"stop");
             this.addStartStop(e.target,"stop")
         }
