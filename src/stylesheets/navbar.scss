@@ -44,14 +44,14 @@
     height: 100%;
 }
 .nav-item {
-    margin: 0 10px;
+    margin: 0 5px;
     min-width: 40px;
     cursor: pointer;
     text-align: center;
     height: 30px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     transition: all 0.1s linear;
     padding: 0 10px;
 }
@@ -59,16 +59,40 @@
     color: $secondary-color;
     transition: all 0.1s linear;
 }
-#actualStartButton:hover {
+.navbar-btn:hover {
     background-color: $secondary-color-hover;
     transition: all 0.1s linear;
 }
-#actualStartButton {
+.navbar-btn {
+    // width: 150px;
+    // width: 100px;
+    display: flex;
+    justify-content: center;
     background-color: $secondary-color;
     padding: 10px;
+    margin-left: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.1s linear;
+}
+.clearPath-btn{
+    background-color: $warning-color;
+}
+.clearPath-btn:hover{
+    background-color: $warning-color-hover;
+}
+.clearWalls-btn{
+    background-color: $caution-color;
+}
+.clearWalls-btn:hover{
+    background-color: $caution-color-hover;
+}
+.clearBoard-btn{
+    // width: 100px;
+    background-color: $error-color;
+}
+.clearBoard-btn:hover{
+    background-color: $error-color-hover;
 }
 .clicked {
     background-color: $secondary-color;

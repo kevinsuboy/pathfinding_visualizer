@@ -59,15 +59,15 @@
 @keyframes wallAnimation {
     0% {
         transform: scale(.3);
-        background-color: rgb(12, 53, 71);
+        background-color: $wall-color;
     }
     50% {
         transform: scale(1.2);
-        background-color: rgb(12, 53, 71);
+        background-color: $wall-color;
     }
     100% {
         transform: scale(1.0);
-        background-color: rgb(12, 53, 71);
+        background-color: $wall-color;
     }
 }
 @keyframes startstopAnimation {

@@ -71,7 +71,7 @@ class Board {
 
     }
     watchVisualize() {
-        document.getElementById("startButtonStart").addEventListener("click",e=>{
+        document.getElementById("visualize").addEventListener("click",e=>{
             this.getSpeed();
             this.getAlgo();
             this.clearPath();

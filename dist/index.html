@@ -36,9 +36,8 @@
                             </div>
                         </ul>
                     </li>
-                    <li class="nav-item" id="clearBoard"><p>Clear Board</p></li>
-                    <li class="nav-item" id="clearWalls"><p>Clear Walls</p></li>
-                    <li class="nav-item" id="clearPath"><p>Clear Path</p></li>
+                    <li class="dropdown nav-item"><p>Board Density<i class="fas fa-angle-down"></i></p></li>
+                    <!-- <li class="nav-item" id="clearBoard"><p>Clear Board</p></li> -->
                     <li class="dropdown nav-item" id="speed"><p>Speed: Fast<i class="fas fa-angle-down"></i></p>
                         <ul class="dropdown-content">
                             <div class="dropdown-body">
@@ -48,8 +47,11 @@
                             </div>
                         </ul>
                     </li>
-                    <li class="dropdown nav-item"><p>Board Density<i class="fas fa-angle-down"></i></p></li>
-                    <li id='startButtonStart'><button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize!</button></li>
+                    <li class="navbar-btn clearWalls-btn" id="clearWalls"><p>Clear Walls</p></li>
+                    <li class="navbar-btn clearPath-btn" id="clearPath"><p>Clear Path</p></li>
+                    <!-- <li id='startButtonClearBoard'><button id="clearBoard" class="navbar-btn" type="button">Clear Board</button></li> -->
+                    <li class="navbar-btn clearBoard-btn" id="clearBoard"><p>Clear Board</p></li>
+                    <li class="navbar-btn visualize-btn" id="visualize"><p>Visualize!</p></li>
                 </ul>
             </div>
         </nav>
