@@ -8,14 +8,14 @@ class gridAnimations {
         // for(let i=0;i<this.nodesToAnimate.length;i++)
         //     this.animateNode(i);
         //     // setTimeout(()=>this.animateNode(i), i*this.speed);
-        debugger
+        // debugger
         setTimeout(()=>this.animateNode(0,type), this.speed);
     }
     animateNode(idx,type){
         if(idx >= this.nodesToAnimate.length) return;
         let cur = this.nodesToAnimate[idx];
         cur = document.getElementById(`${cur[0]}-${cur[1]}`);
-        debugger
+        // debugger
         switch(type){
             case "current":
                 cur.classList.remove("unvisited");

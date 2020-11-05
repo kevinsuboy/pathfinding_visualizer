@@ -74,7 +74,15 @@
     background-color: $secondary-color;
     border-radius: 5px;
 }
+.selected {
+    // background-color: $secondary-color;
+    // border-radius: 5px;
+    border-bottom: 5px solid $secondary-color;
+}
 .clicked:hover {
     color: $font-color;
     background-color: $secondary-color-hover;
+}
+#speed {
+    min-width: 130px;
 }

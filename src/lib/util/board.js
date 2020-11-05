@@ -1,9 +1,14 @@
 const {generateInt} = require("./mathUtil");
+const {watchSpeed} = require("./navbar");
 
 class Board {
-    constructor(size){
+    constructor(size, algoList, gridAnimations){
         this.size = size;
         this.browserWidth = 2000;
+        this.speed = "fast";
+        this.algo = "";
+        this.algoList = algoList;
+        this.gridAnimations = gridAnimations;
         this.mainGrid = this.genBoard(size[0],size[1]);
         this.initStartStop();
         this.allEventListeners();
@@ -33,12 +38,42 @@ class Board {
         this.watchWall(this.mainGrid);
         this.watchClearWall();
         this.watchStartStop(this.mainGrid);
+        this.watchVisualize();
+    }
+    getSpeed() {
+        const fast = document.getElementById("speed-fast").classList.contains("selected");
+        const average = document.getElementById("speed-average").classList.contains("selected");
+        const slow = document.getElementById("speed-slow").classList.contains("selected");
+        if (fast) this.speed = "fast";
+        if (average) this.speed = "average";
+        if (slow) this.speed = "slow";
+    }
+    getAlgo() {
+        const bfs = document.getElementById("bfs").classList.contains("selected");
+        if (bfs) this.algo = "bfs";
+
+    }
+    watchVisualize() {
+        document.getElementById("startButtonStart").addEventListener("click",e=>{
+            this.getSpeed();
+            this.getAlgo();
+            const nodesToAnimate = [];
+            const algo = new this.algoList[this.algo](this.size)
+            debugger
+            algo.execute(nodesToAnimate);
+            const gridA = new this.gridAnimations(this.speed, nodesToAnimate);
+            // gridA.animateNodes("queued");
+            gridA.animateNodes("current");
+            // setTimeout(() => gridA.animateNodes("current"),3*gridA.speed);
+            setTimeout(() => gridA.animateNodes("visited"), 4 * gridA.speed);
+        })
     }
     isStartStop(e, start, stop) {
         // debugger
         return (start ? start.contains(e.target):false) || (stop ? stop.contains(e.target):false);
     }
     toggleWall(e) {
+        debugger
         const start = document.getElementsByClassName("start")[0];
         const stop = document.getElementsByClassName("stop")[0];
         const notSt = !this.isStartStop(e, start, stop);

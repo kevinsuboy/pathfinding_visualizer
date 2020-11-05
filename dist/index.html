@@ -20,12 +20,12 @@
                     <a id="logo-link" class="link" href="#">Pathfinding Visualizer</a>
                 </div>
                 <ul class="navbar-nav">
-                    <li class="dropdown nav-item"><p>Algorithms<i class="fas fa-angle-down"></i></p>
+                    <li class="dropdown nav-item" id="algo"><p>Algorithms<i class="fas fa-angle-down"></i></p>
                         <ul class="dropdown-content">
                             <div class="dropdown-body">
-                            <div class="dropdown-item"><li><p>Dijkstra's Algorithm</p></li></div>
-                            <div class="dropdown-item"><li><p>Breadth-First Search</p></li></div>
-                            <div class="dropdown-item"><li><p>Depth-First Search</p></li></div>
+                            <div class="dropdown-item" id="dijkstra"><li><p>Dijkstra's Algorithm</p></li></div>
+                            <div class="dropdown-item selected" id="bfs"><li><p>Breadth-First Search</p></li></div>
+                            <div class="dropdown-item" id="dfs"><li><p>Depth-First Search</p></li></div>
                             </div>
                         </ul>
                     </li>
@@ -39,7 +39,15 @@
                     <li class="nav-item" id="clearBoard"><p>Clear Board</p></li>
                     <li class="nav-item" id="clearWalls"><p>Clear Walls</p></li>
                     <li class="nav-item" id="clearPath"><p>Clear Path</p></li>
-                    <li class="dropdown nav-item"><p>Speed: Fast<i class="fas fa-angle-down"></i></p></li>
+                    <li class="dropdown nav-item" id="speed"><p>Speed: Fast<i class="fas fa-angle-down"></i></p>
+                        <ul class="dropdown-content">
+                            <div class="dropdown-body">
+                            <div class="dropdown-item selected" id="speed-fast"><li><p>Fast</p></li></div>
+                            <div class="dropdown-item" id="speed-average"><li><p>Average</p></li></div>
+                            <div class="dropdown-item" id="speed-slow"><li><p>Slow</p></li></div>
+                            </div>
+                        </ul>
+                    </li>
                     <li class="dropdown nav-item"><p>Board Density<i class="fas fa-angle-down"></i></p></li>
                     <li id='startButtonStart'><button id="actualStartButton" class="btn btn-default navbar-btn" type="button">Visualize!</button></li>
                 </ul>
