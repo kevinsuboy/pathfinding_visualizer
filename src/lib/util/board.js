@@ -39,6 +39,8 @@ class Board {
         this.watchClearWall();
         this.watchStartStop(this.mainGrid);
         this.watchVisualize();
+        this.watchClearBoard();
+        this.watchClearPath();
     }
     getSpeed() {
         const fast = document.getElementById("speed-fast").classList.contains("selected");
@@ -53,20 +55,43 @@ class Board {
         if (bfs) this.algo = "bfs";
 
     }
+    convert2Insta(){
+        const visited = document.getElementsByClassName("visited");
+        // debugger
+        while (visited.length > 0) {
+            visited[0].classList.add("instantvisited");
+            visited[0].classList.remove("visited");
+        }
+        const path = document.getElementsByClassName("path");
+        // debugger
+        while (path.length > 0) {
+            path[0].classList.add("instantpath");
+            path[0].classList.remove("path");
+        }
+
+    }
     watchVisualize() {
         document.getElementById("startButtonStart").addEventListener("click",e=>{
             this.getSpeed();
             this.getAlgo();
+            this.clearPath();
             this.clearVisited();
             const nodesToAnimate = [];
             const algo = new this.algoList[this.algo](this.size)
-            debugger
+            // debugger
             algo.execute(nodesToAnimate);
+            const backTrace = [];
+            algo.getShortestPath(backTrace);
             const gridA = new this.gridAnimations(this.speed, nodesToAnimate);
+            const gridB = new this.gridAnimations(this.speed, backTrace);
             // gridA.animateNodes("queued");
             gridA.animateNodes("current");
+            // debugger
             setTimeout(() => gridA.animateNodes("queued"), gridA.speed);
-            setTimeout(() => gridA.animateNodes("visited"), 10 * gridA.speed);
+            setTimeout(() => {
+                gridA.animateNodes("visited",
+                    () => gridB.animateNodes("path", () => setTimeout(() => this.convert2Insta(),2000)));
+            }, 10 * gridA.speed);
         })
     }
     isStartStop(e, start, stop) {
@@ -74,7 +99,7 @@ class Board {
         return (start ? start.contains(e.target):false) || (stop ? stop.contains(e.target):false);
     }
     toggleWall(e) {
-        debugger
+        // debugger
         const start = document.getElementsByClassName("start")[0];
         const stop = document.getElementsByClassName("stop")[0];
         const notSt = !this.isStartStop(e, start, stop);
@@ -82,17 +107,25 @@ class Board {
         if(e.target.tagName === "TD" && e.currentTarget.classList.contains("mouse_wall")) {
             if(e.target.classList.contains("wall")){
                 e.target.classList.remove("wall");
-                e.target.classList.add("unvisited");
+                // e.target.classList.add("unvisited");
             } else if(notSt){
                 e.target.classList.add("wall");
-                e.target.classList.remove("unvisited");
-                e.target.classList.remove("visited");
+                // e.target.classList.remove("unvisited");
+                // e.target.classList.remove("visited");
             }
         }
     }
     watchClearWall() {
         const button = document.getElementById("clearWalls");
         button.addEventListener("click",(e) => this.clearWalls(e))
+    }
+    watchClearBoard() {
+        const button = document.getElementById("clearBoard");
+        button.addEventListener("click",(e) => this.clearBoard(e))
+    }
+    watchClearPath() {
+        const button = document.getElementById("clearPath");
+        button.addEventListener("click",(e) => this.clearPath(e))
     }
     clearWalls(e) {
         const walls = document.getElementsByClassName("wall");
@@ -107,6 +140,31 @@ class Board {
             visited[0].classList.add("unvisited");
             visited[0].classList.remove("visited");
         }
+        const instantvisited = document.getElementsByClassName("instantvisited");
+        // debugger
+        while(instantvisited.length > 0){
+            instantvisited[0].classList.add("unvisited");
+            instantvisited[0].classList.remove("instantvisited");
+        }
+    }
+    clearPath(e, newClass = "instantvisited") {
+        // debugger
+        const path = document.getElementsByClassName("path");
+        while(path.length > 0){
+            path[0].classList.add(newClass);
+            path[0].classList.remove("path");
+        }
+        const instantpath = document.getElementsByClassName("instantpath");
+        while(instantpath.length > 0){
+            instantpath[0].classList.add(newClass);
+            instantpath[0].classList.remove("instantpath");
+        }
+    }
+    clearBoard(e){
+        debugger
+        this.clearPath(e,"unvisited");
+        this.clearVisited(e);
+        this.clearWalls(e);
     }
     watchWall(grid) {
         grid.addEventListener("mousedown",(e) => this.toggleWall(e))
@@ -118,11 +176,12 @@ class Board {
         let starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (starttd.classList.length === 0) return;
         while(!starttd.classList.contains("unvisited")) 
             starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+        this.addStartStop(starttd);
+        //
         let stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (stoptd.classList.length === 0) return;
         while(!starttd.classList.contains("unvisited")) 
             stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
         //
-        this.addStartStop(starttd);
         this.addStartStop(stoptd,"stop");
     }
     watchStartStop(grid){

@@ -16,11 +16,31 @@
 .unvisited {
     border: 1px solid $tertiary-color;
 }
+.instantvisited {
+    border: 1px solid $tertiary-color;
+    background-color: $visited-color-4;
+}
+.instantpath {
+    border: 1px solid $path-color-4;
+    background-color: $path-color-4;
+}
 .visited {
     border: 1px solid $tertiary-color;
 
     animation-name: visitedAnimation;
     animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    // animation-delay: 0;
+    // animation-direction: normal;
+    // animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+.path {
+    border: 1px solid $path-color-4;
+
+    animation-name: pathAnimation;
+    animation-duration: 0.5s;
     animation-timing-function: ease-out;
     // animation-delay: 0;
     // animation-direction: normal;

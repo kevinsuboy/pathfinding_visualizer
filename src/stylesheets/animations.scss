@@ -1,6 +1,24 @@
 
 @import "./base";
 
+@keyframes pathAnimation {
+    0% {
+        transform: scale(.3);
+        background-color: $path-color-1;
+        border-radius: 100%;
+    }
+    50% {
+        background-color: $path-color-2;
+    }
+    75% {
+        transform: scale(1.2);
+        background-color: $path-color-3;
+    }
+    100% {
+        transform: scale(1.0);
+        background-color: $path-color-4;
+    }
+}
 @keyframes visitedAnimation {
     0% {
         transform: scale(.3);

@@ -7,7 +7,7 @@ class BFS {
                 this.grid[i][j] = 0;
         }
         const stop = document.getElementsByClassName("stop")[0].id.split("-").map(el => parseInt(el));
-        this.grid[stop[0]][stop[1]] = 3;
+        this.grid[stop[0]][stop[1]] = "s";
         const walls = document.getElementsByClassName("wall");
         // debugger
         for(let w of walls){
@@ -26,27 +26,32 @@ class BFS {
         const instantvisited = [];
         let cur = document.getElementsByClassName(`start`)[0].id.split("-").map(el=>parseInt(el));
         let newPos = undefined;
-        const queue = [cur];
+        const queue = [cur]; this.grid[cur[0]][cur[1]] = 1;
         
         while(queue.length > 0){
             cur = queue.shift();
             // debugger
             if (instant) instantvisited.push(cur);
             else nodesToAnimate.push(cur)
-            if (this.getSquare(cur) === 5){
+            if (this.getSquare(cur) === "s"){
+                // debugger
+                this.grid[cur[0]][cur[1]] = this.maxCnt;
+                this.endPos = cur;
                 return true; // if done, exit
             }
-            this.grid[cur[0]][cur[1]] = 1;
+            // if (this.getSquare(cur)!=="s") this.grid[cur[0]][cur[1]] = 1;
             for(let d of this.dir){
                 newPos = this.move(cur, d);
                 // debugger
                 if(this.validMove(newPos)){
-                    this.grid[newPos[0]][newPos[1]] += 2;
+                    if (this.getSquare(newPos) !== "s") { this.grid[newPos[0]][newPos[1]] = this.getSquare(cur)+1;}
+                    else this.maxCnt = this.getSquare(cur) + 1; 
                     queue.push(newPos);
                 }
             }
-            // debugger
         }
+        // debugger
+        return false;
     }
     move(pos, d){
         return [pos[0]+d[0],pos[1]+d[1]];
@@ -55,12 +60,35 @@ class BFS {
         // debugger
         return this.grid[pos[0]][pos[1]]
     }
+    inBounds(pos){ return (pos[0] >= 0 && pos[0] < this.grid.length && pos[1] >= 0 && pos[1] < this.grid[0].length)}
     validMove(pos){
-        // debugger
-        if (pos[0] >= 0 && pos[0] < this.grid.length &&
-                pos[1] >= 0 && pos[1] < this.grid[0].length)
-            return this.getSquare(pos) === 0 || this.getSquare(pos) === 3;
+        if (this.inBounds(pos))
+            return this.getSquare(pos) === 0 || this.getSquare(pos) === "s";
         return false;
+    }
+    validBacktrace(pos, val){
+        if (this.inBounds(pos))
+            return this.getSquare(pos) === val-1;
+        return false;
+    }
+    getShortestPath(nodesToAnimate){
+        // debugger
+        if(!this.endPos) return false;
+        let newPos; let cur = this.endPos;
+        nodesToAnimate.unshift(cur);
+        while(this.getSquare(cur) !== 1){
+            // debugger
+            for(let d of this.dir){
+                newPos = this.move(cur, d);
+                if (this.validBacktrace(newPos, this.getSquare(cur))){
+                    nodesToAnimate.unshift(newPos);
+                    cur = newPos;
+                    break;
+                }
+            }
+        }
+        // debugger
+        return true;
     }
 }
 

@@ -31,7 +31,7 @@ const watchAlgo = () => {
     const bfs = document.getElementById("bfs");
     algo.addEventListener("click", e => {
         const bfsT = bfs.contains(e.target);
-        debugger
+        // debugger
         if (bfsT) { bfs.classList.remove("selected"); }
         if (bfsT) bfs.classList.add("selected");
     })
