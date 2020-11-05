@@ -3,9 +3,22 @@
 #board{
     border: 1px solid $tertiary-color;
 }
-#board td{
+.hello{
+    background-color: red;
+}
+.sparse{
+    height: 50px;
+    width: 50px;
+    position: relative;
+}
+.normal{
     height: 25px;
     width: 25px;
+    position: relative;
+}
+.dense{
+    height: 10px;
+    width: 10px;
     position: relative;
 }
 .start, .stop {
@@ -81,10 +94,9 @@
 .stop i, .start i {
     margin: 0;
     padding: 0;
-    font-size: 25px;
     border: none;
     position: absolute;
-
+    
     animation-name: startstopAnimation;
     animation-duration: 0.7s;
     animation-timing-function: ease-out;
@@ -99,7 +111,27 @@
     top: -5px;
     left: 3.5px;
 }
+.dense-start i{
+    font-size: 10px;
+    top: 0px;
+    left: 2px;
+}
+.sparse-start i{
+    font-size: 50px;
+    top: 0px;
+    left: 11px;
+}
 .stop i{
+    font-size: 25px;
     top: 0px;
     left: -0.5px;
+}
+.dense-stop i{
+    font-size: 10px;
+    top: 0px;
+}
+.sparse-stop i{
+    font-size: 50px;
+    top: 0px;
+    left: 0px;
 }

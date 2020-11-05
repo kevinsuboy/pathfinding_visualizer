@@ -6,7 +6,8 @@ const {gridAnimations} = require("./lib/animations/gridAnimations")
 document.addEventListener("DOMContentLoaded", () => {
     NavBar.watchAll();
     window.timeouts = [];
-    const size = [25, 50];
+    // const size = [25, 50];
+    const size = "normal";
     // const size = [5, 5];
     const algos = {};
     algos["bfs"] = BFS;

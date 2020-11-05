@@ -10,6 +10,7 @@ class Game extends Board {
     watchVisualize() {
         document.getElementById("visualize").addEventListener("click", e => {
             this.instant = false;
+            this.stopAnimations(); this.clearMisc();
             document.getElementById("clearPath").innerText = "Clear Path"
             const{nodesToAnimate,backTrace} = this.execute();
             this.animateVisualize(this.getSpeed(), nodesToAnimate, backTrace);
@@ -69,6 +70,27 @@ class Game extends Board {
                 () => gridB.animateNodes("path", () => setTimeout(() => this.convert2Insta(), 2000)));
         }, 10 * gridA.speed)
         )        
+    }
+    watchDensity(){
+        const density = document.getElementById("density");
+        density.addEventListener("click", e => {
+            const newDense = this.getDensity(e);
+            debugger
+            if(newDense) this.genBoard(newDense);
+        })
+    }
+    getDensity(e){
+        const dense = document.getElementById("dense");
+        const sparse = document.getElementById("sparse");
+        const normal = document.getElementById("normal");
+        const denseTd = dense.classList.contains("selected");
+        const sparseTd = sparse.classList.contains("selected");
+        const normalTd = normal.classList.contains("selected");
+        // debugger
+        if (!dense.contains(e.target) && !sparse.contains(e.target) && !normal.contains(e.target) ) return false;
+        if (denseTd) return "dense";
+        if (sparseTd) return "sparse";
+        if (normalTd) return "normal";
     }
     genRandomWalls(){
         const [ h, w ] = this.size;

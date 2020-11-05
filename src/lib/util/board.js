@@ -2,18 +2,27 @@ const {generateInt} = require("./mathUtil");
 const {watchSpeed} = require("./navbar");
 
 class Board {
-    constructor(size){
-        this.size = size;
+    constructor(density){
         this.browserWidth = 2000;
-        this.mainGrid = this.genBoard(size[0],size[1]);
-        this.initStartStop();
+        this.mainGrid = document.getElementById("mainGrid");
+        // debugger
+        this.genBoard(density);
+        this.density = density;
         this.allEventListeners();
         this.instant = false;
         this.path = true;
     }
-    genBoard(h, w) {
-        const mainGrid = document.getElementById("mainGrid");
-        mainGrid.innerHTML = '';
+    getSize(density){
+        this.size = density === "normal" ? [25, 50] :
+            density === "dense" ? [55, 120] : [12, 25];
+    }
+    genBoard(density) {
+        this.density = density;
+        this.getSize(density);
+        debugger
+        const [h,w] = this.size;
+        // const mainGrid = document.getElementById("mainGrid");
+        this.mainGrid.innerHTML = '';
         const table = document.createElement("table");
         table.id = "board";
         const tbody = document.createElement("tbody");
@@ -25,12 +34,14 @@ class Board {
                 let td = document.createElement("td");
                 td.id = `${i}-${j}`;
                 td.classList.add("unvisited")
+                td.classList.add(density)
                 trow.appendChild(td);
             }
             tbody.appendChild(trow);
         }
-        mainGrid.appendChild(table);
-        return mainGrid;
+        this.mainGrid.appendChild(table);
+        this.initStartStop(density);
+        // return mainGrid;
     }
     allEventListeners() {
         this.watchWall(this.mainGrid);
@@ -40,6 +51,7 @@ class Board {
         this.watchClearBoard();
         this.watchClearPath();
         this.watchMaze();
+        this.watchDensity();
     }
     getSpeed() {
         const average = document.getElementById("speed-average").classList.contains("selected");
@@ -204,18 +216,20 @@ class Board {
                 this.watchInstant();
         })
     }
-    initStartStop(){
+    initStartStop(density){
         const [h, w] = this.size;
         let starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (starttd.classList.length === 0) return;
         while(!starttd.classList.contains("unvisited")) 
             starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
         this.addStartStop(starttd);
+        starttd.classList.add(`${density}-start`)
         //
         let stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (stoptd.classList.length === 0) return;
         while ((!stoptd.classList.contains("unvisited")) || stoptd.classList.contains("start"))
             stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
         //
         this.addStartStop(stoptd,"stop");
+        stoptd.classList.add(`${density}-stop`)
     }
     watchStartStop(grid){
         grid.addEventListener("mousedown", (e) => this.moveStartStop(e))
@@ -252,12 +266,14 @@ class Board {
         // start.className = '';
         start.classList.add(str);
         start.innerHTML = str === "start" ? '<i class="fas fa-angle-right"></i>' : '<i class="far fa-dot-circle"></i>'
+        start.classList.add(`${this.density}-${str}`)
     }
     removeStartStop(start, str = "start"){
         // debugger
         if(start){
             start.innerHTML = '';
             start.classList.add("unvisited"); start.classList.remove(str);
+            start.classList.remove(`${this.density}-${str}`)
         }
     }
 }
