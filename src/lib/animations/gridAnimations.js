@@ -2,7 +2,7 @@ class gridAnimations {
     constructor(speed, nodesToAnimate){
         this.nodesToAnimate = nodesToAnimate;
         this.speed = speed === "fast" ? 0 :
-                    speed === "average" ? 10 : 50;
+                    speed === "average" ? 20 : 50;
     }
     animateNodes(type){
         // for(let i=0;i<this.nodesToAnimate.length;i++)

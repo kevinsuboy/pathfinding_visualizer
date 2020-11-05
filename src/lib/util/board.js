@@ -57,6 +57,7 @@ class Board {
         document.getElementById("startButtonStart").addEventListener("click",e=>{
             this.getSpeed();
             this.getAlgo();
+            this.clearVisited();
             const nodesToAnimate = [];
             const algo = new this.algoList[this.algo](this.size)
             debugger
@@ -64,8 +65,8 @@ class Board {
             const gridA = new this.gridAnimations(this.speed, nodesToAnimate);
             // gridA.animateNodes("queued");
             gridA.animateNodes("current");
-            // setTimeout(() => gridA.animateNodes("current"),3*gridA.speed);
-            setTimeout(() => gridA.animateNodes("visited"), 4 * gridA.speed);
+            setTimeout(() => gridA.animateNodes("queued"), gridA.speed);
+            setTimeout(() => gridA.animateNodes("visited"), 10 * gridA.speed);
         })
     }
     isStartStop(e, start, stop) {
@@ -98,6 +99,13 @@ class Board {
         while(walls.length > 0){
             walls[0].classList.add("unvisited");
             walls[0].classList.remove("wall");
+        }
+    }
+    clearVisited(e) {
+        const visited = document.getElementsByClassName("visited");
+        while(visited.length > 0){
+            visited[0].classList.add("unvisited");
+            visited[0].classList.remove("visited");
         }
     }
     watchWall(grid) {
