@@ -1,0 +1,66 @@
+@import "./base";
+#legend {
+    // border: 1px solid red;
+    height: 120px;
+    box-shadow: $my-box-shadow;
+    background-color: $background-color-2;
+    margin-top: 0px;
+    //
+}
+.legend-container {
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+}
+.legend-container h1 {
+    // color: $visited-color-3;
+    text-align: center;
+    padding: 15px;
+    font-weight: 700;
+    font-size: 30px;
+}
+.legend-key-container ul{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.legend-key-container {
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    // border: 1px solid red;
+}
+.key-square{
+    height: 25px;
+    width: 25px;
+}
+.key-item{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+.key-item p{
+    padding: 0 15px;
+}
+
+.key-instantvisited {
+    border: 1px solid $tertiary-color;
+    background-color: $visited-color-4;
+}
+.key-instantpath {
+    border: 1px solid $path-color-4;
+    background-color: $path-color-4;
+}
+.key-queued {
+    background-color: $queued-color-4;
+}
+.key-current {
+    background-color: rgba(255, 251, 0, 0.699);
+}
+.key-wall {
+    background-color: $wall-color;
+
+    border: 1px solid rgb(12, 53, 71);
+}

@@ -14,8 +14,8 @@ class Board {
     }
     getSize(density){
         this.size = density === "normal" ? [25, 50] :
-            density === "dense" ? [55, 120] : [5, 5];
-            // density === "dense" ? [55, 120] : [12, 25];
+            // density === "dense" ? [55, 120] : [5, 5];
+            density === "dense" ? [55, 120] : [12, 25];
     }
     genBoard(density) {
         this.density = density;
@@ -135,14 +135,10 @@ class Board {
             // debugger
             if(!this.instant) return;
             const clearPathBTN = document.getElementById("clearPath");
-            if(this.path){
                 clearPathBTN.innerText = "Clear Path";
                 this.clearVisited(e)
                 this.clearPath(e)
-            }else{
-                clearPathBTN.innerText = "Clear Path"
-                // this.animatePath()
-            }
+                this.instant = false;
         })
     }
     stopAnimations(){
@@ -203,13 +199,11 @@ class Board {
             queued[0].classList.remove("queued");
         }
     }
-    clearPath(e, newClass = "unvisited",toggle=true) {
+    clearPath(e, newClass = "unvisited") {
         const clearPathBTN = document.getElementById("clearPath");
+        // this.instant = false;
         // debugger
         // console.log("FLAG")
-        if(toggle){
-            this.path = false;
-        }
         const path = document.getElementsByClassName("path");
         while(path.length > 0){
             path[0].classList.add(newClass);

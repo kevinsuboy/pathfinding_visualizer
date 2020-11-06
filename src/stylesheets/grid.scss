@@ -1,6 +1,7 @@
 @import "./base";
 @import "./animations";
 #board{
+    margin-top: 20px;
     border: 1px solid $tertiary-color;
 }
 .hello{

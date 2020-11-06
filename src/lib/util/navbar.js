@@ -68,10 +68,11 @@ const watchAlgo = () => {
         const dfsT = dfs.contains(e.target);
         const dijT = dijkstra.contains(e.target);
         // debugger
+        const header = document.getElementById("algo-title");
         if (bfsT || dfsT || dijT) { bfs.classList.remove("selected"); dfs.classList.remove("selected"); dijkstra.classList.remove("selected"); }
-        if (bfsT) bfs.classList.add("selected");
-        if (dfsT) dfs.classList.add("selected");
-        if (dijT) dijkstra.classList.add("selected");
+        if (bfsT) { bfs.classList.add("selected"); header.innerText = "Breadth-First Search"}
+        if (dfsT) { dfs.classList.add("selected"); header.innerText = "Depth-First Search"}
+        if (dijT) { dijkstra.classList.add("selected"); header.innerText = "Dijkstra's Algorithm"}
     })
 }
 const watchSpeed = () => {

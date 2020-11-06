@@ -42,7 +42,7 @@ class Game extends Board {
         gridC.animateInstant("queued");
         gridA.animateInstant("instantvisited");
         debugger
-        if(this.path) gridB.animateInstant("instantpath");
+        gridB.animateInstant("instantpath");
     }
     animateWalls(nodesToAnimate){
         const gridA = new this.gridAnimations("fast", nodesToAnimate);
