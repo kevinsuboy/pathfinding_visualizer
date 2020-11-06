@@ -1,3 +1,4 @@
+const {shuffle} = require('../util/mathUtil')
 const { algoParent } = require("./algoParent");
 
 class DFS extends algoParent {
@@ -23,6 +24,7 @@ class DFS extends algoParent {
                 return true; // if done, exit
             }
             // this.grid[cur[0]][cur[1]] += 1;
+            shuffle(this.dir);
             for (let d of this.dir) {
                 newPos = this.move(cur, d);
                 // debugger
