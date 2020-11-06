@@ -14,7 +14,8 @@ class Board {
     }
     getSize(density){
         this.size = density === "normal" ? [25, 50] :
-            density === "dense" ? [55, 120] : [12, 25];
+            density === "dense" ? [55, 120] : [5, 5];
+            // density === "dense" ? [55, 120] : [12, 25];
     }
     genBoard(density) {
         this.density = density;
@@ -64,11 +65,12 @@ class Board {
         // const bfs = document.getElementById("bfs").classList.contains("selected");
         // if (bfs) return "bfs";
 
-        return "bfs";
+        return "dfs";
     }
     convert2Insta(){
         const visited = document.getElementsByClassName("visited");
         // debugger
+        this.pruneQueue();
         while (visited.length > 0) {
             visited[0].classList.add("instantvisited");
             visited[0].classList.remove("visited");
@@ -87,6 +89,13 @@ class Board {
         this.instant = true;
         this.path = true;
 
+    }
+    pruneQueue(){
+        // const visited = document.getElementsByClassName("visited");
+        const queueVisited = document.getElementsByClassName("queued visited");
+        while(queueVisited.length > 0) queueVisited[0].classList.remove("queued");
+        const queuePath = document.getElementsByClassName("queued path");
+        while(queuePath.length > 0) queuePath[0].classList.remove("queued");
     }
     isStartStop(el) {
         const start = document.getElementsByClassName("start")[0];
@@ -138,7 +147,7 @@ class Board {
         let i = 0;
         while(i < window.timeouts.length){
             clearTimeout(window.timeouts[i++]);
-            debugger
+            // debugger
         }
     }
     clearWallMenu(){
@@ -194,7 +203,7 @@ class Board {
     }
     clearPath(e, newClass = "instantvisited",toggle=true) {
         const clearPathBTN = document.getElementById("clearPath");
-        debugger
+        // debugger
         // console.log("FLAG")
         if(toggle){
             this.path = false;

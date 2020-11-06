@@ -35,7 +35,9 @@ class algoParent {
         }
     }
     execute(nodesToAnimate, queueToAnimate, backtraceToAnimate) {
-        this.genSearch(nodesToAnimate,queueToAnimate); this.getShortestPath(backtraceToAnimate);
+        // debugger
+        this.genSearch(nodesToAnimate,queueToAnimate);
+        this.getShortestPath(backtraceToAnimate);
     }
     move(pos, d) {
         return [pos[0] + d[0], pos[1] + d[1]];

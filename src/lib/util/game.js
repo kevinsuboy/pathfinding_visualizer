@@ -28,6 +28,7 @@ class Game extends Board {
         const backTrace = [];
         const algo = new this.algoList[this.getAlgo()](this.size)
         algo.execute(nodesToAnimate, queueToAnimate, backTrace);
+        debugger
         this.backTrace = backTrace;
         return {nodesToAnimate, queueToAnimate,backTrace};
     }
@@ -80,6 +81,7 @@ class Game extends Board {
         density.addEventListener("click", e => {
             const newDense = this.getDensity(e);
             debugger
+            this.instant = false;
             if(newDense) this.genBoard(newDense);
         })
     }
