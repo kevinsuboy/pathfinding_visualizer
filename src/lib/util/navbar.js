@@ -61,11 +61,17 @@ const watchDensity = () => {
 const watchAlgo = () => {
     const algo = document.getElementById("algo");
     const bfs = document.getElementById("bfs");
+    const dfs = document.getElementById("dfs");
+    const dijkstra = document.getElementById("dijkstra");
     algo.addEventListener("click", e => {
         const bfsT = bfs.contains(e.target);
+        const dfsT = dfs.contains(e.target);
+        const dijT = dijkstra.contains(e.target);
         // debugger
-        if (bfsT) { bfs.classList.remove("selected"); }
+        if (bfsT || dfsT || dijT) { bfs.classList.remove("selected"); dfs.classList.remove("selected"); dijkstra.classList.remove("selected"); }
         if (bfsT) bfs.classList.add("selected");
+        if (dfsT) dfs.classList.add("selected");
+        if (dijT) dijkstra.classList.add("selected");
     })
 }
 const watchSpeed = () => {

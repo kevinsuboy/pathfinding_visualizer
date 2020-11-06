@@ -9,12 +9,15 @@ class Game extends Board {
     }
     watchVisualize() {
         document.getElementById("visualize").addEventListener("click", e => {
-            this.instant = false;
-            this.stopAnimations(); this.clearMisc();
-            document.getElementById("clearPath").innerText = "Clear Path"
-            const{nodesToAnimate, queueToAnimate, backTrace} = this.execute();
-            this.animateVisualize(this.getSpeed(), nodesToAnimate, queueToAnimate, backTrace);
+            this.run();
         })
+    }
+    run(){
+        this.instant = false;
+        this.stopAnimations(); this.clearMisc();
+        document.getElementById("clearPath").innerText = "Clear Path"
+        const { nodesToAnimate, queueToAnimate, backTrace } = this.execute();
+        this.animateVisualize(this.getSpeed(), nodesToAnimate, queueToAnimate, backTrace);
     }
     watchInstant(){
         const { nodesToAnimate, queueToAnimate, backTrace } = this.execute();
@@ -136,6 +139,18 @@ class Game extends Board {
         maze.addEventListener("click",e=>{
             // debugger
             this.wallGen(e);
+        })
+    }
+    watchAlgo(){
+        const maze = document.getElementById("algo");
+        maze.addEventListener("click",e=>{
+            const bfsT = document.getElementById("bfs").contains(e.target);
+            const dfsT = document.getElementById("dfs").contains(e.target);
+            const dijkstraT = document.getElementById("dijkstra").contains(e.target);
+            if(bfsT || dfsT || dijkstraT){
+                if(this.instant) this.watchInstant();
+                else this.run();
+            }
         })
     }
 }

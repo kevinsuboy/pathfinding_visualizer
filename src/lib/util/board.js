@@ -52,20 +52,22 @@ class Board {
         this.watchClearBoard();
         this.watchClearPath();
         this.watchMaze();
+        this.watchAlgo();
         this.watchDensity();
     }
     getSpeed() {
         const average = document.getElementById("speed-average").classList.contains("selected");
-        const slow = document.getElementById("speed-slow").classList.contains("selected");
         if (average) return "average";
+        const slow = document.getElementById("speed-slow").classList.contains("selected");
         if (slow) return "slow";
         return "fast";
     }
     getAlgo() {
-        // const bfs = document.getElementById("bfs").classList.contains("selected");
-        // if (bfs) return "bfs";
-
-        return "dfs";
+        const bfs = document.getElementById("bfs").classList.contains("selected");
+        if (bfs) return "bfs";
+        const dfs = document.getElementById("dfs").classList.contains("selected");
+        if (dfs) return "dfs";
+        return "dijkstra"
     }
     convert2Insta(){
         const visited = document.getElementsByClassName("visited");
@@ -201,7 +203,7 @@ class Board {
             queued[0].classList.remove("queued");
         }
     }
-    clearPath(e, newClass = "instantvisited",toggle=true) {
+    clearPath(e, newClass = "unvisited",toggle=true) {
         const clearPathBTN = document.getElementById("clearPath");
         // debugger
         // console.log("FLAG")
@@ -210,12 +212,12 @@ class Board {
         }
         const path = document.getElementsByClassName("path");
         while(path.length > 0){
-            // path[0].classList.add(newClass);
+            path[0].classList.add(newClass);
             path[0].classList.remove("path");
         }
         const instantpath = document.getElementsByClassName("instantpath");
         while(instantpath.length > 0){
-            // instantpath[0].classList.add(newClass);
+            instantpath[0].classList.add(newClass);
             instantpath[0].classList.remove("instantpath");
         }
     }
