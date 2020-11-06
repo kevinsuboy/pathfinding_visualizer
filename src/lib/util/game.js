@@ -115,6 +115,7 @@ class Game extends Board {
         this.animateWalls(nodes);
     }
     wallGen(e){
+        const none = document.getElementById("no-maze");
         const rM = document.getElementById("random-maze");
         // debugger
         if (rM.contains(e.target) && rM.classList.contains("selected")){
@@ -123,6 +124,9 @@ class Game extends Board {
                 setTimeout(() => 
             this.genRandomWalls(), 0)
             )
+        }
+        if (none.contains(e.target) && none.classList.contains("selected")){
+            this.clearWalls(e,false);
         }
     }
     watchMaze(){

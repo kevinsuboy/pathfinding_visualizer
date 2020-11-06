@@ -125,11 +125,12 @@ class Board {
             if(!this.instant) return;
             const clearPathBTN = document.getElementById("clearPath");
             if(this.path){
-                clearPathBTN.innerText = "Show Path";
+                clearPathBTN.innerText = "Clear Path";
+                this.clearVisited(e)
                 this.clearPath(e)
             }else{
                 clearPathBTN.innerText = "Clear Path"
-                this.animatePath()
+                // this.animatePath()
             }
         })
     }
@@ -200,12 +201,12 @@ class Board {
         }
         const path = document.getElementsByClassName("path");
         while(path.length > 0){
-            path[0].classList.add(newClass);
+            // path[0].classList.add(newClass);
             path[0].classList.remove("path");
         }
         const instantpath = document.getElementsByClassName("instantpath");
         while(instantpath.length > 0){
-            instantpath[0].classList.add(newClass);
+            // instantpath[0].classList.add(newClass);
             instantpath[0].classList.remove("instantpath");
         }
     }
