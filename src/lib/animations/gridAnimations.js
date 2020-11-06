@@ -12,10 +12,14 @@ class gridAnimations {
             cur = document.getElementById(`${cur[0]}-${cur[1]}`);
             switch(type){
                 case "instantvisited":
+                    cur.classList.remove("queued");
                     cur.classList.add("instantvisited");
                     break;
                 case "instantpath":
                     cur.classList.add("instantpath");
+                    break;
+                case "queued":
+                    cur.classList.add("queued");
                     break;
                 case "walls":
                     cur.classList.add("wall");

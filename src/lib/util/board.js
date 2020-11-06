@@ -79,6 +79,11 @@ class Board {
             path[0].classList.add("instantpath");
             path[0].classList.remove("path");
         }
+        const current = document.getElementsByClassName("current");
+        // debugger
+        while (current.length > 0) {
+            current[0].classList.remove("current");
+        }
         this.instant = true;
         this.path = true;
 
@@ -178,6 +183,12 @@ class Board {
         while(instantvisited.length > 0){
             instantvisited[0].classList.add("unvisited");
             instantvisited[0].classList.remove("instantvisited");
+        }
+        const queued = document.getElementsByClassName("queued");
+        // debugger
+        while(queued.length > 0){
+            queued[0].classList.add("unvisited");
+            queued[0].classList.remove("queued");
         }
     }
     clearPath(e, newClass = "instantvisited",toggle=true) {

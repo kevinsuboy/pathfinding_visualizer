@@ -34,8 +34,8 @@ class algoParent {
                 this.grid[i][j] = 0;
         }
     }
-    execute(nodesToAnimate, backtraceToAnimate) {
-        this.genSearch(nodesToAnimate); this.getShortestPath(backtraceToAnimate);
+    execute(nodesToAnimate, queueToAnimate, backtraceToAnimate) {
+        this.genSearch(nodesToAnimate,queueToAnimate); this.getShortestPath(backtraceToAnimate);
     }
     move(pos, d) {
         return [pos[0] + d[0], pos[1] + d[1]];

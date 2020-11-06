@@ -1,35 +1,17 @@
 const { algoParent } = require("./algoParent");
 
-class BFS extends algoParent {
+class DFS extends algoParent {
     constructor(gridSize){
         super(gridSize)
     }
-    genSearch(nodesToAnimate,queueToAnimate){
+    genSearch(nodesToAnimate){
         this.genGrid();
         let cur = document.getElementsByClassName(`start`)[0].id.split("-").map(el=>parseInt(el));
         let newPos = undefined;
-        const queue = [cur]; this.grid[cur[0]][cur[1]] = 1;
+        const stack = [cur]; this.grid[cur[0]][cur[1]] = 1;
         
-        while(queue.length > 0){
-            cur = queue.shift();
-            // debugger
-            nodesToAnimate.push(cur)
-            if (this.getSquare(cur) === "s"){
-                // debugger
-                this.grid[cur[0]][cur[1]] = this.maxCnt;
-                this.endPos = cur;
-                return true; // if done, exit
-            }
-            // if (this.getSquare(cur)!=="s") this.grid[cur[0]][cur[1]] = 1;
-            for(let d of this.dir){
-                newPos = this.move(cur, d);
-                // debugger
-                if(this.validMove(newPos)){
-                    if (this.getSquare(newPos) !== "s") { queueToAnimate.push(newPos); this.grid[newPos[0]][newPos[1]] = this.getSquare(cur)+1;}
-                    else this.maxCnt = this.getSquare(cur) + 1; 
-                    queue.push(newPos);
-                }
-            }
+        while(stack.length > 0){
+            cur = stack.pop();
         }
         // debugger
         return false;
@@ -61,5 +43,5 @@ class BFS extends algoParent {
 }
 
 module.exports = {
-    BFS
+    DFS
 }

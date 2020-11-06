@@ -12,27 +12,30 @@ class Game extends Board {
             this.instant = false;
             this.stopAnimations(); this.clearMisc();
             document.getElementById("clearPath").innerText = "Clear Path"
-            const{nodesToAnimate,backTrace} = this.execute();
-            this.animateVisualize(this.getSpeed(), nodesToAnimate, backTrace);
+            const{nodesToAnimate, queueToAnimate, backTrace} = this.execute();
+            this.animateVisualize(this.getSpeed(), nodesToAnimate, queueToAnimate, backTrace);
         })
     }
     watchInstant(){
-        const { nodesToAnimate, backTrace } = this.execute();
-        this.animateInstant(nodesToAnimate, backTrace);
+        const { nodesToAnimate, queueToAnimate, backTrace } = this.execute();
+        this.animateInstant(nodesToAnimate, queueToAnimate, backTrace);
     }
     execute(){
         this.clearPath(null, "instantvisited", false);
         this.clearVisited();
         const nodesToAnimate = [];
+        const queueToAnimate = [];
         const backTrace = [];
         const algo = new this.algoList[this.getAlgo()](this.size)
-        algo.execute(nodesToAnimate, backTrace);
+        algo.execute(nodesToAnimate, queueToAnimate, backTrace);
         this.backTrace = backTrace;
-        return {nodesToAnimate, backTrace};
+        return {nodesToAnimate, queueToAnimate,backTrace};
     }
-    animateInstant(nodesToAnimate, backTrace){
+    animateInstant(nodesToAnimate, queueToAnimate, backTrace){
         const gridA = new this.gridAnimations("fast", nodesToAnimate);
+        const gridC = new this.gridAnimations("fast", queueToAnimate);
         const gridB = new this.gridAnimations("fast", backTrace);
+        gridC.animateInstant("queued");
         gridA.animateInstant("instantvisited");
         debugger
         if(this.path) gridB.animateInstant("instantpath");
@@ -58,12 +61,13 @@ class Game extends Board {
         )
         )
     }
-    animateVisualize(speed, nodesToAnimate, backTrace){
+    animateVisualize(speed, nodesToAnimate, queueToAnimate, backTrace){
         const gridA = new this.gridAnimations(speed, nodesToAnimate);
+        const gridC = new this.gridAnimations(speed, queueToAnimate);
         const gridB = new this.gridAnimations(speed, backTrace);
-        gridA.animateNodes("current");
+        window.timeouts.push(setTimeout(()=>gridA.animateNodes("current")));
         // debugger
-        window.timeouts.push(setTimeout(() => gridA.animateNodes("queued"), gridA.speed));
+        window.timeouts.push(setTimeout(() => gridC.animateNodes("queued"), gridA.speed));
         window.timeouts.push(
         setTimeout(() => {
             gridA.animateNodes("visited",
