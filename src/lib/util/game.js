@@ -12,6 +12,11 @@ class Game extends Board {
             this.run();
         })
     }
+    watchEnter() {
+        document.addEventListener("keypress", e => {
+            this.run();
+        })
+    }
     run(){
         this.instant = false;
         this.stopAnimations(); this.clearMisc();

@@ -57,6 +57,7 @@ class Board {
         this.watchMaze();
         this.watchAlgo();
         this.watchDensity();
+        this.watchEnter();
     }
     getSpeed() {
         const average = document.getElementById("speed-average").classList.contains("selected");
