@@ -92,7 +92,7 @@
 
     border: 1px solid rgb(12, 53, 71);
 }
-.stop i, .start i {
+.stop i, .start i, .key-start i, .key-stop i {
     margin: 0;
     padding: 0;
     border: none;
@@ -107,15 +107,22 @@
     animation-fill-mode: forwards;
     animation-play-state: running;
 }
-.start i{
-    font-size: 25px;
+.key-stop i {
+    position: relative;
 }
-.start .fa-angle-right{
+.start i, .key-start i{
+    font-size: 25px;
+    left: 1px;
+}
+.key-start i{
+    position: relative;
+}
+.start .fa-angle-right, .key-start .fa-angle-right{
     font-size: 35px;
     top: -5px;
     left: 3.5px;
 }
-.start .fa-project-diagram{
+.start .fa-project-diagram, .key-start .fa-project-diagram{
     font-size: 19px;
     top: 3px;
 }
@@ -129,7 +136,7 @@
     top: 0px;
     left: 11px;
 }
-.stop i{
+.stop i, .key-stop i{
     font-size: 25px;
     top: 0px;
     left: -0.5px;

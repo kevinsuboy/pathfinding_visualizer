@@ -158,6 +158,7 @@ class Game extends Board {
             const dijkstraT = document.getElementById("dijkstra").contains(e.target);
             if(bfsT || dfsT || dijkstraT){
                 document.getElementsByClassName("start")[0].innerHTML = this.getStartSymbol();
+                document.getElementsByClassName("key-start")[0].innerHTML = this.getStartSymbol();
                 if(this.instant) this.watchInstant();
                 // else this.run();
             }

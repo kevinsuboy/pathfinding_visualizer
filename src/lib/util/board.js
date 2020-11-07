@@ -293,8 +293,11 @@ class Board {
     }
     addStartStop(start, str = "start"){
         // start.className = '';
+        const key = document.getElementsByClassName(`key-${str}`)[0]
+        debugger
         start.classList.add(str);
         start.innerHTML = str === "start" ? this.getStartSymbol() : '<i class="far fa-dot-circle"></i>'
+        key.innerHTML = start.innerHTML;
         start.classList.add(`${this.density}-${str}`)
     }
     removeStartStop(start, str = "start"){
