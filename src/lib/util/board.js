@@ -20,7 +20,7 @@ class Board {
     genBoard(density) {
         this.density = density;
         this.getSize(density);
-        debugger
+        // debugger
         const [h,w] = this.size;
         // const mainGrid = document.getElementById("mainGrid");
         this.mainGrid.innerHTML = '';

@@ -2,7 +2,8 @@ const NavBar = require("./lib/util/navbar");
 const {Game} = require("./lib/util/game")
 const {BFS} = require("./lib/algos/bfs")
 const {DFS} = require("./lib/algos/dfs")
-const {gridAnimations} = require("./lib/animations/gridAnimations")
+const { Dijkstra } = require("./lib/algos/dijkstra");
+const {gridAnimations} = require("./lib/animations/gridAnimations");
 
 document.addEventListener("DOMContentLoaded", () => {
     NavBar.watchAll();
@@ -16,5 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const algos = {};
     algos["bfs"] = BFS;
     algos["dfs"] = DFS;
+    algos["dijkstra"] = Dijkstra;
     const board = new Game(size,algos, gridAnimations);
 })

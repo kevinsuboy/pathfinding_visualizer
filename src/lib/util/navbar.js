@@ -69,11 +69,20 @@ const watchAlgo = () => {
         const dijT = dijkstra.contains(e.target);
         // debugger
         const header = document.getElementById("algo-title");
-        if (bfsT || dfsT || dijT) { bfs.classList.remove("selected"); dfs.classList.remove("selected"); dijkstra.classList.remove("selected"); }
-        if (bfsT) { bfs.classList.add("selected"); header.innerText = "Breadth-First Search"}
-        if (dfsT) { dfs.classList.add("selected"); header.innerText = "Depth-First Search"}
-        if (dijT) { dijkstra.classList.add("selected"); header.innerText = "Dijkstra's Algorithm"}
+        changeAlgo({ bfsT, dfsT, dijT,header });
     })
+}
+const changeAlgo = ({bfsT,dfsT,dijT,header}) => {
+    if (bfsT || dfsT || dijT) { bfs.classList.remove("selected"); dfs.classList.remove("selected"); dijkstra.classList.remove("selected"); }
+    if (bfsT) { bfs.classList.add("selected"); header.innerText = "Breadth-First Search" }
+    if (dfsT) { dfs.classList.add("selected"); header.innerText = "Depth-First Search" }
+    if (dijT) { dijkstra.classList.add("selected"); header.innerText = "Dijkstra's Algorithm" }
+
+}
+const updateAlgo = ({bfs,dfs,dijkstra,header}) => {
+    if(bfs.classList.contains("selected")) header.innerText = "Breadth-First Search" 
+    if(dfs.classList.contains("selected")) header.innerText = "Depth-First Search" 
+    if(dijkstra.classList.contains("selected")) header.innerText = "Dijkstra's Algorithm" 
 }
 const watchSpeed = () => {
     const speed = document.getElementById("speed");
@@ -101,6 +110,11 @@ const watchSpeed = () => {
 }
 
 const watchAll = () => {
+    const bfs = document.getElementById("bfs");
+    const dfs = document.getElementById("dfs");
+    const dijkstra = document.getElementById("dijkstra");
+    const header = document.getElementById("algo-title");
+    updateAlgo({bfs,dfs,dijkstra,header});
     watchDropdown();
     watchSpeed();
     watchAlgo();

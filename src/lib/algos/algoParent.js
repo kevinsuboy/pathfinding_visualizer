@@ -1,19 +1,20 @@
 class algoParent {
-    constructor(gridSize) {
+    constructor(gridSize, initVal=0) {
+        this.initVal = initVal;
         this.grid = new Array(gridSize[0]);
         for (let i = 0; i < this.grid.length; i++) {
             this.grid[i] = new Array(gridSize[1]);
             for (let j = 0; j < gridSize[1]; j++)
-                this.grid[i][j] = 0;
+                this.grid[i][j] = initVal;
         }
         this.nodesToAnimate = [];
         this.backtraceToAnimate = [];
         // debugger
         this.dir = [
             [0, 1],
-            [1, 0],
             [-1, 0],
-            [0, -1]
+            [0, -1],
+            [1, 0]
         ];
     }
     genGrid() {
@@ -31,7 +32,7 @@ class algoParent {
     resetGrid() {
         for (let i = 0; i < this.grid.length; i++) {
             for (let j = 0; j < this.grid[0].length; j++)
-                this.grid[i][j] = 0;
+                this.grid[i][j] = this.initVal;
         }
     }
     execute(nodesToAnimate, queueToAnimate, backtraceToAnimate) {
@@ -47,8 +48,9 @@ class algoParent {
         return this.grid[pos[0]][pos[1]]
     }
     inBounds(pos) { return (pos[0] >= 0 && pos[0] < this.grid.length && pos[1] >= 0 && pos[1] < this.grid[0].length) }
+    notWall(pos){ return this.getSquare(pos) !== -1}
     validMove(pos) {
-        if (this.inBounds(pos))
+        if (this.inBounds(pos) && this.notWall(pos))
             return this.getSquare(pos) === 0 || this.getSquare(pos) === "s";
         return false;
     }
