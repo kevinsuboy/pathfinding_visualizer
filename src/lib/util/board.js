@@ -42,6 +42,9 @@ class Board {
         }
         this.mainGrid.appendChild(table);
         this.initStartStop(density);
+        this.wallGen(null,true)
+        if(this.instant)
+            this.watchInstant()
         // return mainGrid;
     }
     allEventListeners() {

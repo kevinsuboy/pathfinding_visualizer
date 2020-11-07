@@ -44,15 +44,18 @@ class Game extends Board {
         debugger
         gridB.animateInstant("instantpath");
     }
-    animateWalls(nodesToAnimate){
+    animateWalls(nodesToAnimate, instant = true){
         const gridA = new this.gridAnimations("fast", nodesToAnimate);
-        gridA.animateInstant("walls");
-        if (this.instant)
-            this.watchInstant();
-        // gridA.animateNodes("walls", ()=>{
-        //     if (this.instant)
-        //         this.watchInstant();
-        // });
+        if(instant){
+            gridA.animateInstant("walls");
+            if (this.instant)
+                this.watchInstant();
+        }else{
+            gridA.animateNodes("walls", ()=>{
+                if (this.instant)
+                    this.watchInstant();
+            });
+        }
     }
     animatePath() {
         this.path = true;
@@ -84,8 +87,9 @@ class Game extends Board {
         density.addEventListener("click", e => {
             const newDense = this.getDensity(e);
             debugger
-            this.instant = false;
+            // this.instant = false;
             if(newDense) this.genBoard(newDense);
+
         })
     }
     getDensity(e){
@@ -119,18 +123,18 @@ class Game extends Board {
         }
         this.animateWalls(nodes);
     }
-    wallGen(e){
+    wallGen(e, instant = false){
         const none = document.getElementById("no-maze");
         const rM = document.getElementById("random-maze");
         // debugger
-        if (rM.contains(e.target) && rM.classList.contains("selected")){
+        if ((instant || rM.contains(e.target)) && rM.classList.contains("selected")){
             this.clearWalls(e,false);
             window.timeouts.push(
                 setTimeout(() => 
             this.genRandomWalls(), 0)
             )
         }
-        if (none.contains(e.target) && none.classList.contains("selected")){
+        if ((instant || none.contains(e.target)) && none.classList.contains("selected")){
             this.clearWalls(e,false);
         }
     }
