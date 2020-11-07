@@ -157,8 +157,9 @@ class Game extends Board {
             const dfsT = document.getElementById("dfs").contains(e.target);
             const dijkstraT = document.getElementById("dijkstra").contains(e.target);
             if(bfsT || dfsT || dijkstraT){
+                document.getElementsByClassName("start")[0].innerHTML = this.getStartSymbol();
                 if(this.instant) this.watchInstant();
-                else this.run();
+                // else this.run();
             }
         })
     }

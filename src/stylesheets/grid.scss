@@ -108,9 +108,16 @@
     animation-play-state: running;
 }
 .start i{
+    font-size: 25px;
+}
+.start .fa-angle-right{
     font-size: 35px;
     top: -5px;
     left: 3.5px;
+}
+.start .fa-project-diagram{
+    font-size: 19px;
+    top: 3px;
 }
 .dense-start i{
     font-size: 10px;

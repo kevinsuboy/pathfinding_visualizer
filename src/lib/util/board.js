@@ -73,6 +73,14 @@ class Board {
         if (dfs) return "dfs";
         return "dijkstra"
     }
+    getStartSymbol() {
+        const symbols = {
+            "bfs": '<i class="fas fa-star-of-life"></i>',
+            "dfs": '<i class="fas fa-angle-right"></i>',
+            "dijkstra": '<i class="fas fa-project-diagram"></i>' 
+        }
+        return symbols[this.getAlgo()];
+    }
     convert2Insta(){
         const visited = document.getElementsByClassName("visited");
         // debugger
@@ -286,7 +294,7 @@ class Board {
     addStartStop(start, str = "start"){
         // start.className = '';
         start.classList.add(str);
-        start.innerHTML = str === "start" ? '<i class="fas fa-angle-right"></i>' : '<i class="far fa-dot-circle"></i>'
+        start.innerHTML = str === "start" ? this.getStartSymbol() : '<i class="far fa-dot-circle"></i>'
         start.classList.add(`${this.density}-${str}`)
     }
     removeStartStop(start, str = "start"){
