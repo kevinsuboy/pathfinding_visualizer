@@ -19,8 +19,9 @@ class Dijkstra extends algoParent {
                 for(let k=0;k<4;k++){
                     newPos = this.move([i,j], this.dir[k]);
                     if(this.validMove(newPos)){
-                        // this.edges[i][j][k] = 1;
-                        this.edges[i][j][k] = generateInt(this.grid.length * this.grid[0].length)+1;
+                        this.edges[i][j][k] = 1;
+                        // this.edges[i][j][k] = k+1;
+                        // this.edges[i][j][k] = generateInt(this.grid.length * this.grid[0].length)+1;
                     }else{
                         this.edges[i][j][k] = Number.MAX_SAFE_INTEGER;
                     }
