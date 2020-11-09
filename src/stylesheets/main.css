@@ -1,0 +1,423 @@
+#global-nav {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  background-color: #245978;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  min-height: 50px; }
+
+.navbar {
+  margin: 0 auto;
+  width: 90%; }
+
+.link {
+  color: inherit;
+  /* blue colors for links too */
+  text-decoration: inherit;
+  /* no underline */ }
+
+#logo-link {
+  font-size: 20px; }
+
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  font-size: 14px; }
+
+.navbar-logo {
+  min-width: 200px; }
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%; }
+
+.nav-item {
+  margin: 0 5px;
+  min-width: 40px;
+  cursor: pointer;
+  text-align: center;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  transition: all 0.1s linear;
+  padding: 0 10px; }
+
+.nav-item:hover {
+  color: #0bb577;
+  transition: all 0.1s linear; }
+
+.navbar-btn:hover {
+  background-color: #0cc581;
+  transition: all 0.1s linear; }
+
+.navbar-btn {
+  display: flex;
+  justify-content: center;
+  background-color: #0bb577;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s linear; }
+
+.clearPath-btn {
+  background-color: #cbf80079;
+  width: 70px; }
+
+.clearPath-btn:hover {
+  background-color: #cbf8008e; }
+
+.clearWalls-btn {
+  background-color: rgba(12, 53, 71, 0.603); }
+
+.clearWalls-btn:hover {
+  background-color: rgba(3, 34, 46, 0.603); }
+
+.clearBoard-btn {
+  background-color: #cc5a5aaf; }
+
+.clearBoard-btn:hover {
+  background-color: #ff3434af; }
+
+.clicked {
+  background-color: #0bb577;
+  border-radius: 5px; }
+
+.selected {
+  background-color: #0bb577;
+  border-radius: 5px; }
+
+.clicked:hover {
+  color: white;
+  background-color: #0cc581; }
+
+#speed {
+  min-width: 130px; }
+
+.dropdown {
+  position: relative;
+  padding-right: 0; }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  padding-top: 25px;
+  top: 25px;
+  left: 0px;
+  width: 250px;
+  color: white;
+  z-index: 1; }
+
+.dropdown-content li:hover {
+  background-color: #0bb577;
+  transition: all 0.1s linear; }
+
+.dropdown-content li {
+  font-size: 12px;
+  height: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border-radius: 5px;
+  transition: all 0.1s linear; }
+
+.dropdown-body {
+  background-color: #245978bb;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 5px; }
+
+.show {
+  display: block;
+  transition: all 0.1s linear; }
+
+.dropdown-item {
+  height: 30px;
+  font-weight: 300;
+  font-size: 15px; }
+
+.dropdown-content {
+  animation: rotateMenu 400ms ease-in-out forwards;
+  transform-origin: top center; }
+@keyframes rotateMenu {
+  0% {
+    transform: rotateX(-90deg); }
+  70% {
+    transform: rotateX(20deg); }
+  100% {
+    transform: rotateX(0deg); } }
+@keyframes pathAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #ecee86bb;
+    border-radius: 100%; }
+  50% {
+    background-color: #eff17abb; }
+  75% {
+    transform: scale(1.2);
+    background-color: #f0f34dbb; }
+  100% {
+    transform: scale(1);
+    background-color: #e8eb34bb; } }
+@keyframes visitedAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #000042bb;
+    border-radius: 100%; }
+  50% {
+    background-color: #245978bb; }
+  75% {
+    transform: scale(1.2);
+    background-color: #0bb577bb; }
+  100% {
+    transform: scale(1);
+    background-color: #34cfebbb; } }
+@keyframes queuedAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #370042bb;
+    border-radius: 100%; }
+  50% {
+    background-color: #242c78bb; }
+  75% {
+    transform: scale(1.2);
+    background-color: #e371ffbb; }
+  100% {
+    transform: scale(1);
+    background-color: #b734eb81; } }
+@keyframes wallAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #0c3547; }
+  50% {
+    transform: scale(1.2);
+    background-color: #0c3547; }
+  100% {
+    transform: scale(1);
+    background-color: #0c3547; } }
+@keyframes startstopAnimation {
+  0% {
+    transform: scale(0.5); }
+  50% {
+    transform: scale(1.5); }
+  100% {
+    transform: scale(1); } }
+#board {
+  margin-top: 20px;
+  border: 1px solid #34d0eb83; }
+
+.hello {
+  background-color: red; }
+
+.sparse {
+  height: 50px;
+  width: 50px;
+  position: relative; }
+
+.normal {
+  height: 25px;
+  width: 25px;
+  position: relative; }
+
+.dense {
+  height: 10px;
+  width: 10px;
+  position: relative; }
+
+.start, .stop {
+  border: 1px solid #34d0eb83;
+  cursor: pointer; }
+
+.unvisited {
+  border: 1px solid #34d0eb83; }
+
+.instantvisited {
+  border: 1px solid #34d0eb83;
+  background-color: #34cfebbb; }
+
+.instantpath {
+  border: 1px solid #e8eb34bb;
+  background-color: #e8eb34bb; }
+
+.visited {
+  border: 1px solid #34d0eb83;
+  animation-name: visitedAnimation;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-play-state: running; }
+
+.path {
+  border: 1px solid #e8eb34bb;
+  animation-name: pathAnimation;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-play-state: running; }
+
+.queued {
+  background-color: #b734eb81; }
+
+.current {
+  background-color: rgba(255, 251, 0, 0.699); }
+
+.wall {
+  animation-name: wallAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  border: 1px solid #0c3547; }
+
+.stop i, .start i, .key-start i, .key-stop i {
+  margin: 0;
+  padding: 0;
+  border: none;
+  position: absolute;
+  animation-name: startstopAnimation;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-play-state: running; }
+
+.key-stop i {
+  position: relative; }
+
+.start i, .key-start i {
+  font-size: 25px; }
+
+.key-start i {
+  position: relative; }
+
+.start .fa-angle-right, .key-start .fa-angle-right {
+  font-size: 35px;
+  top: -5px;
+  left: 3.5px; }
+
+.start .fa-project-diagram, .key-start .fa-project-diagram {
+  font-size: 19px;
+  top: 3px; }
+
+.dense-start i {
+  font-size: 10px;
+  top: 0px;
+  left: -1px; }
+
+.dense-start .fa-angle-right {
+  font-size: 15px;
+  left: 1px;
+  top: -2px; }
+
+.dense-start .fa-project-diagram {
+  font-size: 9px;
+  top: 0px;
+  left: -1px; }
+
+.sparse-start i {
+  font-size: 50px;
+  top: 0px;
+  left: 11px; }
+
+.stop i, .key-stop i {
+  font-size: 25px;
+  top: 0px;
+  left: -0.5px; }
+
+.dense-stop i {
+  font-size: 10px;
+  top: 0px; }
+
+.sparse-stop i {
+  font-size: 50px;
+  top: 0px;
+  left: 0px; }
+
+#legend {
+  height: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: #2459782d;
+  margin-top: 0px; }
+
+.legend-container {
+  height: 100%;
+  width: 90%;
+  margin: 0 auto; }
+
+.legend-container h1 {
+  text-align: center;
+  padding: 15px;
+  font-weight: 700;
+  font-size: 30px; }
+
+.legend-key-container ul {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+.legend-key-container {
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px; }
+
+.key-square {
+  border: 1px solid #34d0eb83;
+  background-color: #f7f7fa;
+  height: 25px;
+  width: 25px; }
+
+.key-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.key-item p {
+  padding: 0 15px; }
+
+.key-unvisited {
+  border: 1px solid #34d0eb83;
+  background-color: #f7f7fa; }
+
+.key-instantvisited {
+  border: 1px solid #34d0eb83;
+  background-color: #34cfebbb; }
+
+.key-instantpath {
+  border: 1px solid #34d0eb83;
+  background-color: #e8eb34bb; }
+
+.key-queued {
+  background-color: #b734eb81; }
+
+.key-current {
+  background-color: rgba(255, 251, 0, 0.699); }
+
+.key-wall {
+  background-color: #0c3547;
+  border: 1px solid #0c3547; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f7fa; }
+
+i {
+  margin: 0 10px; }
+
+#mainGrid {
+  width: 90%;
+  min-width: 1300px;
+  margin: 0 auto; }
+
+/*# sourceMappingURL=main.css.map */
