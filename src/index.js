@@ -4,11 +4,12 @@ const {BFS} = require("./lib/algos/bfs")
 const {DFS} = require("./lib/algos/dfs")
 const { Dijkstra } = require("./lib/algos/dijkstra");
 const {gridAnimations} = require("./lib/animations/gridAnimations");
-const Modal = require("./lib/util/modal");
+const {Modal} = require("./lib/util/modal");
 
 document.addEventListener("DOMContentLoaded", () => {
     NavBar.watchAll();
-    Modal.watchAll();
+    const modal = new Modal();
+    modal.watchAll();
     window.timeouts = [];
     // const size = [25, 50];
     const denseTd = document.getElementById("dense").classList.contains("selected");

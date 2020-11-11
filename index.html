@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>A JavaScript project</title>
+    <title>Pathfinding Visualizer</title>
     <link rel="stylesheet" href="./src/stylesheets/reset.css">
     <link rel="stylesheet" href="./src/stylesheets/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,8 @@
     <script src="https://kit.fontawesome.com/5fbea3a1e3.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <script src="./dist/main.js"></script>
+    <link rel="icon" type="image/png"
+    href="./img/vector.png">
 </head>
 
 <body>
@@ -68,18 +70,67 @@
     </div>
     <div id='tutorial' class='modal'>
         <div class='modal-content'>
+            <div class='modal-content-pg'>
+                <p>1/9</p>
+            </div>
             <div class='modal-content-1'>
                 <h1>Welcome to Pathfinding Visualizer</h1>
+                <h2>This tutorial will go over the features of this app</h2>
+                <img src="./img/vector.png"/>
+            </div>
+            <div class='modal-content-2'>
+                <h1>Pathfinding Algorithms</h1>
+                <h2>Pathfinding algorithms attempt to find the shortest path between two points. This app visualizes common algorithms</h2>
+                <h3>This app is applied on a 2D grid, with 4 neighbors in each cardinal direction</h3>
+                <img src="./img/gps.jpg"/>
+            </div>
+            <div class='modal-content-3'>
+                <h1>Picking an Algorithm</h1>
+                <h2>Choose an algorithm from the "Algorithms" dropdown menu</h2>
+                <h3>Note that not all algorithms find the shortest path, and all have different performance characteristics</h3>
+                <img src="./img/algo.png" />
+            </div>
+            <div class='modal-content-4'>
+                <h1>Summary of Algorithms</h1>
+                <h3><span>Dijkstra's Algorithm:</span> finds the shortest path(s) between nodes in a graph</h3>
+                <h3><span>Breadth-First Search:</span> starts at a root node and explores all neighbor nodes of current nodes</h3>
+                <h3><span>Depth-First Search:</span> starts at a root node and explores as far as possible along each branch before backtracking</h3>
+            </div>
+            <div class='modal-content-5'>
+                <h1>Adding Walls</h1>
+                <h2>Click and drag across the grid to generate walls</h2>
+                <h3>Walls are impenetrable and cannot be passed through</h3>
+                <img src="./img/wall_2.gif" />
+            </div>
+            <div class='modal-content-6'>
+                <h1>Dragging Nodes</h1>
+                <h2>Click and drag nodes to move them</h2>
+                <h3>Note that the app will dynamically re-evaluate as nodes are dragged</h3>
+                <img src="./img/node_1.gif" />
+            </div>
+            <div class='modal-content-7'>
+                <h1>Navbar Guide</h1>
+                <h2>Use the navbar to select the algorithm, auto-generate a maze, change board density, animation speed</h2>
+                <img src="./img/navbar.png" />
+                <h3><span>Clear Walls</span> to clear walls</h3>
+                <h3><span>Clear Path</span> to restart visualization</h3>
+                <h3><span>Clear Board</span> to start over</h3>
+            </div>
+            <div class='modal-content-8'>
+                <h1>Have Fun</h1>
+                <h2>Explore the endless possibilities of pathfinding</h2>
+                <h3 class="git-link"><div>Checkout my GitHub</div><i class="fab fa-github"></i></h3>
+                <h3 class="linkedin-link"><div>Checkout my Linkedin</div><i class="fab fa-linkedin"></i></h3>
             </div>
             <div class='modal-btn-container'>
                 <li class="navbar-btn modal-btn" id="skip-tutorial">
                     <p>Skip Tutorial</p>
                 </li>
                 <div class='modal-btn-nextprev'>
-                    <li class="navbar-btn modal-btn" id="skip-tutorial">
+                    <li class="navbar-btn modal-btn" id="prev-tutorial">
                         <p>Previous</p>
                     </li>
-                    <li class="navbar-btn modal-btn" id="skip-tutorial">
+                    <li class="navbar-btn modal-btn" id="next-tutorial">
                         <p>Next</p>
                     </li>
                 </div>

@@ -1,3 +1,6 @@
+h3 span {
+    font-weight: bold;
+}
 .modal {
     position: fixed;
     left: 0;
@@ -7,6 +10,46 @@
     background-color: rgba(0, 0, 0, 0.493);
     width: 100%;
     height: 100%;
+}
+.modal-content-pg {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+@for $i from 1 through 8 {
+    .modal-content-#{$i} {
+        display: none;
+        flex-direction: column;
+    }
+    .modal-content-#{$i} h2 {
+        text-align: center;
+        margin: 10px auto;
+        font-size: 25px;
+    }
+    .modal-content-#{$i} h3 {
+        margin: 10px auto;
+        font-size: 20px;
+    }
+    .modal-content-#{$i} p {
+        margin: 10px auto;
+        font-size: 15px;
+    }
+    .modal-content-#{$i} img {
+        margin: auto;
+        margin-top: 15px;
+        height: 300px;
+    }
+}
+.modal-content-1 img {
+    margin: auto;
+    margin-top: 15px;
+    width: 400px;
+    height: 400px;
+}
+.modal-content-7 img {
+    margin: auto;
+    margin-top: 15px;
+    height: 45px;
 }
 .modal-content {
     position: fixed;
@@ -21,6 +64,9 @@
     width: 70%;
     height: 80%;
     // height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .modal-content h1 {
     text-align: center;
@@ -33,6 +79,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 .modal-btn {
     color: $font-color;
@@ -43,4 +91,20 @@
 .modal-btn-nextprev {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+}
+.modal-content-8 i {
+    font-size: 50px;
+}
+.modal-content-8 h2 {
+    margin-bottom: 30px;
+}
+.modal-content-8 h3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.modal-content-8 h3:hover {
+    cursor: pointer;
+    color: $primary-color;
 }
