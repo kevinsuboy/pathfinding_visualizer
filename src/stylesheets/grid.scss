@@ -112,7 +112,7 @@
 }
 .start i, .key-start i{
     font-size: 25px;
-    // left: 1px;
+    left: 0.5px;
 }
 .key-start i{
     position: relative;
@@ -129,7 +129,7 @@
 .dense-start i{
     font-size: 10px;
     top: 0px;
-    left: -1px;
+    left: -0.5px;
 }
 .dense-start .fa-angle-right{
     font-size: 15px;
@@ -144,7 +144,17 @@
 .sparse-start i{
     font-size: 50px;
     top: 0px;
-    left: 11px;
+    // left: 11px;
+}
+.sparse-start .fa-angle-right{
+    font-size: 60px;
+    left: 7px;
+    top: -4px;
+}
+.sparse-start .fa-project-diagram{
+    font-size: 35px;
+    top: 4px;
+    left: 2px;    
 }
 .stop i, .key-stop i{
     font-size: 25px;
