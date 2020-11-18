@@ -13,18 +13,12 @@ class Modal {
     watchOutside() {
         document.addEventListener("click", (e) => {
             // debugger
-            let outside = false;
             const modal_content = document.getElementsByClassName("modal-content");
             for(let mc of modal_content){
+                debugger
                 if(!mc.contains(e.target)){
-                    outside = true;
-                    break;
+                    this.clearModal();
                 }
-            }
-    
-            if (outside) {
-                this.clearModal();
-                // debugger
             }
         })
     }
@@ -46,9 +40,9 @@ class Modal {
             document.getElementById("prev-tutorial").style.display = "flex";
         }
         if (this.modal === 8){
-            document.getElementById("next-tutorial").innerHTML = "<p>Finish</p>";
+            document.getElementById("next-tutorial").innerText = "Finish";
         }else{
-            document.getElementById("next-tutorial").innerHTML = "<p>Next</p>";
+            document.getElementById("next-tutorial").innerText = "Next";
         }
     }
     watchprevModal() {
