@@ -6,6 +6,7 @@ class Game extends Board {
         super(size);
         this.algoList = algoList;
         this.gridAnimations = gridAnimations;
+        this.density = "normal";
     }
     watchVisualize() {
         document.getElementById("visualize").addEventListener("click", e => {
@@ -93,7 +94,10 @@ class Game extends Board {
             const newDense = this.getDensity(e);
             debugger
             // this.instant = false;
-            if(newDense) this.genBoard(newDense);
+            if(newDense){
+                this.density = newDense;
+                this.genBoard(newDense);
+            }
 
         })
     }
@@ -126,17 +130,28 @@ class Game extends Board {
                 nodes.push([x,y]);
             }
         }
-        this.animateWalls(nodes);
+        this.animateWalls(nodes, this.density === "dense");
+    }
+    genRecursiveWalls(){
+
     }
     wallGen(e, instant = false){
         const none = document.getElementById("no-maze");
         const rM = document.getElementById("random-maze");
+        const rD = document.getElementById("recursive-division");
         // debugger
         if ((instant || rM.contains(e.target)) && rM.classList.contains("selected")){
             this.clearWalls(e,false);
             window.timeouts.push(
                 setTimeout(() => 
             this.genRandomWalls(), 0)
+            )
+        }
+        if ((instant || rD.contains(e.target)) && rD.classList.contains("selected")){
+            this.clearWalls(e,false);
+            window.timeouts.push(
+                setTimeout(() => 
+            this.genRecursiveWalls(), 0)
             )
         }
         if ((instant || none.contains(e.target)) && none.classList.contains("selected")){
