@@ -49,6 +49,9 @@ class Board {
     }
     allEventListeners() {
         this.watchWall(this.mainGrid);
+        document.addEventListener("keydown", (e)=>{
+            debugger
+        })
         this.watchClearWall();
         this.watchStartStop(this.mainGrid);
         this.watchVisualize();

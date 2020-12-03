@@ -17,6 +17,27 @@ class algoParent {
             [1, 0]
         ];
     }
+    genEdges() {
+        this.edges = new Array(this.grid.length);
+        let newPos = undefined;
+        for (let i = 0; i < this.edges.length; i++) {
+            this.edges[i] = new Array(this.grid[0].length);
+            for (let j = 0; j < this.grid[0].length; j++) {
+                this.edges[i][j] = new Array(4); //! E N W S
+                // debugger
+                for (let k = 0; k < 4; k++) {
+                    newPos = this.move([i, j], this.dir[k]);
+                    if (this.validMove(newPos)) {
+                        this.edges[i][j][k] = 1;
+                        // this.edges[i][j][k] = k+1;
+                        // this.edges[i][j][k] = generateInt(this.grid.length * this.grid[0].length)+1;
+                    } else {
+                        this.edges[i][j][k] = Number.MAX_SAFE_INTEGER;
+                    }
+                }
+            }
+        }
+    }
     genGrid() {
         this.resetGrid();
         //! Drop Stop

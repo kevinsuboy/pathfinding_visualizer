@@ -18,6 +18,10 @@
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
+#logo-link:hover {
+    color: $secondary-color;
+    transition: all 0.1s linear;
+}
 #logo-link {
     font-size: 20px;
 }

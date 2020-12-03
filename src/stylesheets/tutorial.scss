@@ -76,6 +76,7 @@ h3 span {
     padding: 15px;
 }
 .modal-btn-container {
+    width: 95%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -89,6 +90,7 @@ h3 span {
     margin: 0 10px;
 }
 .modal-btn-nextprev {
+    margin: 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -107,4 +109,10 @@ h3 span {
 .modal-content-8 h3:hover {
     cursor: pointer;
     color: $primary-color;
+}
+.visualize-modal {
+    
+}
+.profile-link {
+    text-decoration: none;
 }

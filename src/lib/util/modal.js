@@ -15,7 +15,7 @@ class Modal {
             // debugger
             const modal_content = document.getElementsByClassName("modal-content");
             for(let mc of modal_content){
-                debugger
+                // debugger
                 if(!mc.contains(e.target)){
                     this.clearModal();
                 }

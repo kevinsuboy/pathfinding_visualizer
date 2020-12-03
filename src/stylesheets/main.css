@@ -17,6 +17,10 @@
   text-decoration: inherit;
   /* no underline */ }
 
+#logo-link:hover {
+  color: #0bb577;
+  transition: all 0.1s linear; }
+
 #logo-link {
   font-size: 20px; }
 
@@ -646,6 +650,7 @@ h3 span {
   padding: 15px; }
 
 .modal-btn-container {
+  width: 95%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -659,6 +664,7 @@ h3 span {
   margin: 0 10px; }
 
 .modal-btn-nextprev {
+  margin: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; }
@@ -677,6 +683,9 @@ h3 span {
 .modal-content-8 h3:hover {
   cursor: pointer;
   color: #245978; }
+
+.profile-link {
+  text-decoration: none; }
 
 body {
   font-family: 'Roboto', sans-serif;
