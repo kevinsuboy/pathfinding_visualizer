@@ -1,4 +1,4 @@
-#global-nav {
+#global-nav, #global-foot {
   display: flex;
   align-items: center;
   color: white;
@@ -7,9 +7,24 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   min-height: 50px; }
 
+#global-foot * {
+  margin: 0; }
+
+#global-foot .navbar-container {
+  margin: 0 auto; }
+
+#global-foot {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 35px;
+  color: black;
+  background-color: #2459782d;
+  box-shadow: 0px -8px 16px 0px rgba(0, 0, 0, 0.2); }
+
 .navbar {
   margin: 0 auto;
-  width: 90%; }
+  width: 100%; }
 
 .link {
   color: inherit;
@@ -31,7 +46,8 @@
   align-items: center;
   flex-wrap: wrap;
   height: 100%;
-  font-size: 14px; }
+  font-size: 14px;
+  width: 90%; }
 
 .navbar-logo {
   min-width: 200px; }
@@ -74,6 +90,9 @@
   cursor: pointer;
   transition: all 0.1s linear; }
 
+.footer-logo {
+  font-size: 20px; }
+
 .clearPath-btn {
   background-color: #cbf80079;
   width: 70px; }
@@ -107,6 +126,12 @@
 
 #speed {
   min-width: 130px; }
+
+.footer-links i {
+  font-size: 25px; }
+
+.footer-links {
+  min-width: 300px; }
 
 .dropdown {
   position: relative;
@@ -697,6 +722,7 @@ i {
 #mainGrid {
   width: 90%;
   min-width: 1300px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  margin-bottom: 80px; }
 
 /*# sourceMappingURL=main.css.map */
