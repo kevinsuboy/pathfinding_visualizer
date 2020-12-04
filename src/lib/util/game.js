@@ -52,6 +52,7 @@ class Game extends Board {
     }
     animateWalls(nodesToAnimate, instant = true){
         const gridA = new this.gridAnimations("fast", nodesToAnimate);
+        // const gridA = new this.gridAnimations("slow", nodesToAnimate);
         if(instant){
             gridA.animateInstant("walls");
             if (this.instant)
@@ -132,8 +133,79 @@ class Game extends Board {
         }
         this.animateWalls(nodes, this.density === "dense");
     }
+    genBorderWall(){
+        const [h, w] = this.size;
+        let x = 0, y = 0;
+        let cur; let nodes = [];
+        for (let y = 0; y < w; y++) {
+            cur = document.getElementById(`${0}-${y}`);
+            if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
+                nodes.push([0, y]);
+            }
+        }
+        for (let x = 0; x < h; x++) {
+            cur = document.getElementById(`${x}-${0}`);
+            if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
+                nodes.push([x, 0]);
+            }
+            cur = document.getElementById(`${x}-${w-1}`);
+            if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
+                nodes.push([x, w-1]);
+            }
+        }
+        for (let y = 0; y < w; y++) {
+            cur = document.getElementById(`${h-1}-${y}`);
+            if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
+                nodes.push([h - 1, y]);
+            }
+        }
+        return nodes;
+    }
     genRecursiveWalls(){
-
+        let nodes = this.genBorderWall();
+        this.genRecursiveWalls_indY([1,1],this.size,nodes,-1)
+        this.animateWalls(nodes, this.density === "dense");
+    }
+    genRecursiveWalls_indX(lBound,uBound, nodes, gap){
+        const [h,w] = lBound;
+        const [H,W] = uBound;
+        if (H - h < 3) return;
+        let x = generateInt(H - h-3) + h + 1;
+        let skip = generateInt(W - w-1) + w;
+        if(!gap) debugger;
+        // while (x === gap) x = generateInt(W - w - 1) + w;
+        let cur;
+        for(let y=w;y<W;y++){
+            if(y !== skip){
+                cur = document.getElementById(`${x}-${y}`);
+                if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
+                    nodes.push([x, y]);
+                }
+            }
+        }
+        this.genRecursiveWalls_indY([x+1,lBound[1]], uBound, nodes, skip); // bottom half
+        this.genRecursiveWalls_indY(lBound, [x,uBound[1]], nodes, skip); // upper half
+    }
+    genRecursiveWalls_indY(lBound,uBound, nodes, gap){
+        const [h,w] = lBound;
+        const [H,W] = uBound;
+        if (W - w < 3) return;
+        let skip = generateInt(H - h-1) + h;
+        let y = generateInt(W - w-3) + w + 1;
+        if (!gap) debugger;
+        // while (y === gap) y = generateInt(H - h - 1) + h;
+        // debugger
+        let cur;
+        for(let x=h;x<H;x++){
+            if(x !== skip){
+                cur = document.getElementById(`${x}-${y}`);
+                if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
+                    nodes.push([x, y]);
+                }
+            }
+        }
+        this.genRecursiveWalls_indX([lBound[0], y+1], uBound, nodes, skip); // right half
+        this.genRecursiveWalls_indX(lBound, [uBound[0], y], nodes, skip); // left half
     }
     wallGen(e, instant = false){
         const none = document.getElementById("no-maze");
