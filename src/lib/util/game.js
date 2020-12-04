@@ -135,65 +135,98 @@ class Game extends Board {
         const [h, w] = this.size;
         let x = 0, y = 0;
         let cur; let nodes = [];
+        let walls = {};
         for (let y = 0; y < w; y++) {
             cur = document.getElementById(`${0}-${y}`);
             if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
                 nodes.push([0, y]);
+                walls[`${0}-${y}`] = true;
             }
         }
         for (let x = 0; x < h; x++) {
             cur = document.getElementById(`${x}-${0}`);
             if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
                 nodes.push([x, 0]);
+                walls[`${x}-${0}`] = true;
             }
             cur = document.getElementById(`${x}-${w-1}`);
             if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
                 nodes.push([x, w-1]);
+                walls[`${x}-${w-1}`] = true;
             }
         }
         for (let y = 0; y < w; y++) {
             cur = document.getElementById(`${h-1}-${y}`);
             if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
                 nodes.push([h - 1, y]);
+                walls[`${h-1}-${y}`] = true;
             }
         }
-        return nodes;
+        return {nodes, walls};
     }
     genRecursiveWalls(){
-        let nodes = this.genBorderWall();
+        let {nodes,walls} = this.genBorderWall();
         let [x,y] = this.size;
-        this.genRecursiveWalls_ind([1,1],[x-1,y-1],nodes,-1)
-        this.animateWalls(nodes, true);
-        this.run();
-        // this.animateWalls(nodes, this.density === "dense");
+        this.genRecursiveWalls_ind([1,1],[x-1,y-1],nodes,walls,-1)
+        this.animateWalls(nodes, this.density === "dense");
+        // this.animateWalls(nodes, true);
+        // this.run();
     }
-    genRecursiveWalls_ind(lBound,uBound, nodes, gaps){
+    validXLine(line,l,r, walls){
+        const left = walls[`${line}-${l-1}`];
+        const right = walls[`${line}-${r}`];
+        return left && right;
+    }
+    validYLine(line,l,r, walls){
+        const left = walls[`${l-1}-${line}`];
+        const right = walls[`${r}-${line}`];
+        return left && right;
+    }
+    hSkips(h,H,w,W,line){
+        let skips = [];
+        skips[0] = generateInt(line - w) + w; // left side
+        skips[1] = generateInt(W - line - 1) + line + 1; // right side
+        skips[2] = generateInt(H - h) + h;
+        return skips;
+    }
+    vSkips(h, H, w, W, line) {
+        let skips = [];
+        skips[0] = generateInt(line - w) + w; // left side
+        skips[1] = generateInt(W - line - 1) + line + 1; // right side
+        skips[2] = generateInt(H - h) + h;
+        return skips;
+    }
+    genRecursiveWalls_ind(lBound,uBound, nodesToAnimate, walls){
         const [h,w] = lBound;
         const [H,W] = uBound;
+        // debugger
         if (W - w < 3 || H - h < 3 ) return;
         let yLine = generateInt(W - w - 2) + w + 1;
         let xLine = generateInt(H - h - 2) + h + 1;
         let i=0;
-        if ((gaps[0] === w + 1 || gaps[1] === w + 1) && W - w === 3) return;
-        while (yLine === gaps[0] || yLine === gaps[1]){
+        // if (W - w === 3 && !this.validYLine(w+1, h, H, walls)) return;
+        while (!this.validYLine(yLine,h,H,walls)){
+            // debugger
             i++;
-            if(i===100) debugger;
+            if(i===W-w){
+                debugger;
+                return
+            }
             yLine = generateInt(W - w - 2) + w + 1;
         }
         i=0;
-        if(gaps[2] === h + 1 && H-h === 3) return;
-        while (xLine === gaps[2]){
+        // if (H - h === 3 && !this.validXLine(h + 1, w, W, walls)) return;
+        while (!this.validXLine(xLine, w, W,walls)) {
             i++;
-            if(i===100) debugger;
+            if(i===H-h){
+                debugger;
+                return
+            }
             xLine = generateInt(H - h - 2) + h + 1;
         }
         let x, y;
-        let skips = [];
-        skips[0] = generateInt(yLine - w) + w; // left side
-        skips[1] = generateInt(W - yLine - 1) + yLine+1; // right side
-        skips[2] = generateInt(H - h) + h;
+        let skips = this.hSkips(h,H,w,W,yLine);
         while (skips[2] === xLine) skips[2] = generateInt(H - h) + h;
-        // if (skips[2] === 0 || skips[2] === H || skips[2] === xLine) debugger;
         let cur;
         //!
         y = yLine;
@@ -201,7 +234,8 @@ class Game extends Board {
             if(x !== skips[2]){
                 cur = document.getElementById(`${x}-${y}`);
                 if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
-                    nodes.push([x, y]);
+                    nodesToAnimate.push([x, y]);
+                    walls[`${x}-${y}`] = true;
                 }
             }
         }
@@ -210,14 +244,15 @@ class Game extends Board {
             if (y !== skips[0] && y !== skips[1]) {
                 cur = document.getElementById(`${x}-${y}`);
                 if (cur.classList.contains("unvisited") && !this.isStartStop(cur)) {
-                    nodes.push([x, y]);
+                    nodesToAnimate.push([x, y]);
+                    walls[`${x}-${y}`] = true;
                 }
             }
         }
-        this.genRecursiveWalls_ind(lBound,[x,y],                    nodes, skips); //Q1
-        this.genRecursiveWalls_ind([lBound[0],y+1],[x,uBound[1]],   nodes, skips); //Q2
-        this.genRecursiveWalls_ind([x+1,lBound[1]],[uBound[0],y],   nodes, skips); //Q3
-        this.genRecursiveWalls_ind([x+1,y+1],uBound,                nodes, skips); //Q4
+        this.genRecursiveWalls_ind(lBound,[x,y],                    nodesToAnimate, walls); //Q1
+        this.genRecursiveWalls_ind([lBound[0],y+1],[x,uBound[1]],   nodesToAnimate, walls); //Q2
+        this.genRecursiveWalls_ind([x+1,lBound[1]],[uBound[0],y],   nodesToAnimate, walls); //Q3
+        this.genRecursiveWalls_ind([x+1,y+1],uBound,                nodesToAnimate, walls); //Q4
     }
     wallGen(e, instant = false){
         const none = document.getElementById("no-maze");
