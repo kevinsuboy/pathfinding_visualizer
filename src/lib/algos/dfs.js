@@ -19,7 +19,7 @@ class DFS extends algoParent {
             if (this.getSquare(cur) === "s") {
                 this.grid[cur[0]][cur[1]] = this.maxCnt;
                 this.endPos = cur;
-                debugger
+                // debugger
                 this.solved = true;
                 return true; // if done, exit
             }
@@ -40,11 +40,11 @@ class DFS extends algoParent {
                 }
             }
         }
-        debugger
+        // debugger
         return false;
     }
     getShortestPath(nodesToAnimate){
-        debugger
+        // debugger
         if(this.solved) this.nodesToAnimate.forEach(el => nodesToAnimate.push(el))
         return true;
     }

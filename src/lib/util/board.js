@@ -7,14 +7,14 @@ class Board {
         this.mainGrid = document.getElementById("mainGrid");
         // debugger
         this.genBoard(density);
-        this.density = density;
         this.allEventListeners();
         this.instant = false;
         this.path = true;
     }
     getSize(density){
+        // this.size = density === "normal" ? [10, 10] :
         this.size = density === "normal" ? [25, 50] :
-            // density === "dense" ? [55, 120] : [5, 5];
+            // density === "dense" ? [55, 120] : [10, 10];
             density === "dense" ? [55, 120] : [12, 25];
     }
     genBoard(density) {
@@ -49,9 +49,9 @@ class Board {
     }
     allEventListeners() {
         this.watchWall(this.mainGrid);
-        document.addEventListener("keydown", (e)=>{
-            debugger
-        })
+        // document.addEventListener("keydown", (e)=>{
+        //     debugger
+        // })
         this.watchClearWall();
         this.watchStartStop(this.mainGrid);
         this.watchVisualize();
@@ -250,15 +250,15 @@ class Board {
     }
     initStartStop(density){
         const [h, w] = this.size;
-        let starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (starttd.classList.length === 0) return;
+        let starttd = document.getElementById(`${generateInt(h-2)+1}-${generateInt(w-2)+1}`); if (starttd.classList.length === 0) return;
         while(!starttd.classList.contains("unvisited")) 
-            starttd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+            starttd = document.getElementById(`${generateInt(h-2)+1}-${generateInt(w-2)+1}`);
         this.addStartStop(starttd);
         starttd.classList.add(`${density}-start`)
         //
-        let stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`); if (stoptd.classList.length === 0) return;
+        let stoptd = document.getElementById(`${generateInt(h-2)+1}-${generateInt(w-2)+1}`); if (stoptd.classList.length === 0) return;
         while ((!stoptd.classList.contains("unvisited")) || stoptd.classList.contains("start"))
-            stoptd = document.getElementById(`${generateInt(h)}-${generateInt(w)}`);
+            stoptd = document.getElementById(`${generateInt(h-2)+1}-${generateInt(w-2)+1}`);
         //
         this.addStartStop(stoptd,"stop");
         stoptd.classList.add(`${density}-stop`)

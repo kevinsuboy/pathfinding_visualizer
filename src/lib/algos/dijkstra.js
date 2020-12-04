@@ -22,7 +22,7 @@ class Dijkstra extends algoParent {
                 cur = getQStop(queue);
                 this.grid[cur[0]][cur[1]] = this.maxCnt;
                 this.endPos = cur;
-                debugger
+                // debugger
                 return true; // if done, exit
             }
             cur = getQMin(queue);
@@ -53,12 +53,12 @@ class Dijkstra extends algoParent {
         return false;
     }
     getShortestPath(nodesToAnimate) {
-        debugger
+        // debugger
         if (!this.endPos) return false;
         let newPos; let cur = this.endPos;
         nodesToAnimate.unshift(cur);
         while (this.getSquare(cur) !== 1) {
-            debugger
+            // debugger
             let min = Number.MAX_SAFE_INTEGER;
             let res = undefined;
             for (let d of this.dir) {
