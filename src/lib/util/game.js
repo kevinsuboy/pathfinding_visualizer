@@ -6,7 +6,6 @@ class Game extends Board {
         super(size);
         this.algoList = algoList;
         this.gridAnimations = gridAnimations;
-        this.density = "normal";
     }
     watchVisualize() {
         document.getElementById("visualize").addEventListener("click", e => {
@@ -96,7 +95,6 @@ class Game extends Board {
             debugger
             // this.instant = false;
             if(newDense){
-                this.density = newDense;
                 this.genBoard(newDense);
             }
 
@@ -163,7 +161,8 @@ class Game extends Board {
     }
     genRecursiveWalls(){
         let nodes = this.genBorderWall();
-        this.genRecursiveWalls_indY([1,1],this.size,nodes,-1)
+        let [x,y] = this.size;
+        this.genRecursiveWalls_indY([1,1],[x-1,y-1],nodes,-1)
         this.animateWalls(nodes, this.density === "dense");
     }
     genRecursiveWalls_indX(lBound,uBound, nodes, gap){
@@ -194,7 +193,7 @@ class Game extends Board {
         let y = generateInt(W - w-3) + w + 1;
         if (!gap) debugger;
         // while (y === gap) y = generateInt(H - h - 1) + h;
-        // debugger
+        debugger
         let cur;
         for(let x=h;x<H;x++){
             if(x !== skip){
