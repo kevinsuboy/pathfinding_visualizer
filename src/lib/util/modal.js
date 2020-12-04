@@ -33,7 +33,7 @@ class Modal {
         tutorial.getElementsByClassName(`modal-content-${this.modal}`)[0].style.display = "none"
         this.modal += i;
         tutorial.getElementsByClassName(`modal-content-${this.modal}`)[0].style.display = "flex"
-        tutorial.getElementsByClassName(`modal-content-pg`)[0].innerHTML = `<p>${this.modal}/8</p>`
+        tutorial.getElementsByClassName(`modal-content-pg`)[0].innerHTML = `<p>${this.modal}/9</p>`
         if (this.modal === 1){
             document.getElementById("prev-tutorial").style.display = "none";
         }else{

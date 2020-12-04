@@ -1,3 +1,4 @@
+@import "./base";
 h3 span {
     font-weight: bold;
 }
@@ -16,7 +17,7 @@ h3 span {
     right: 10px;
     top: 10px;
 }
-@for $i from 1 through 8 {
+@for $i from 1 through 9 {
     .modal-content-#{$i} {
         display: none;
         flex-direction: column;
@@ -46,7 +47,7 @@ h3 span {
     width: 400px;
     height: 400px;
 }
-.modal-content-7 img {
+.modal-content-8 img {
     margin: auto;
     margin-top: 15px;
     height: 45px;
@@ -95,24 +96,48 @@ h3 span {
     flex-direction: row;
     flex-wrap: wrap;
 }
-.modal-content-8 i {
+.modal-content-9 i {
     font-size: 50px;
 }
-.modal-content-8 h2 {
+.modal-content-9 h2 {
     margin-bottom: 30px;
+}
+.modal-content-9 h3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.modal-content-9 h3:hover {
+    cursor: pointer;
+    color: $primary-color;
+}
+.profile-link {
+    text-decoration: none;
+}
+
+
+.modal-nav {
+    font-weight: bold;
+    margin-right: 5px;
+    // border: 1px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
 }
 .modal-content-8 h3 {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.modal-content-8 h3:hover {
-    cursor: pointer;
-    color: $primary-color;
+.modal-walls {
+    background-color: $wall-color;
 }
-.visualize-modal {
-    
+.modal-path {
+    background-color: $warning-color-opaque;
 }
-.profile-link {
-    text-decoration: none;
+.modal-board {
+    background-color: $error-color;
+}
+.modal-visualize {
+    background-color: $secondary-color;
 }
